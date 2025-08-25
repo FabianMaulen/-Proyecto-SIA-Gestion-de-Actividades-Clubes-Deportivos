@@ -5,11 +5,11 @@ public class Socio {
     private String edad;
     private String NroCelular;
 
-    public Socio(String nom, String rut, String correo, String años, String numCel){
+    public Socio(String nom, String rut, String correo, String anios, String numCel){
         this.Nombre = nom;
         this.Rut = rut;
         this.email = correo;
-        this.edad = años;
+        this.edad  = anios ;
         this.NroCelular = numCel;
     }
 
