@@ -32,4 +32,26 @@ import java.util.List;
             this.socios = socios;
         }
 
+        public boolean agregarSocio(Socio s){
+            if (sociosPorRut.containsKey(s.getRut())){
+                return false;
+            }
+            sociosPorRut.put(s.getRut(),s);
+            socios.add(s);
+            return true;
+        }
+
+        public Socio buscarSocioPorRut(String rut) {
+            return sociosPorRut.get(rut);
+
+        }
+
+        public boolean eliminarSocioPorRut(String rut){
+            Socio s = sociosPorRut.remove(rut);
+            if ( s!=null){
+                socios.remove(s);
+                return true;
+            }
+            return false;
+        }
     }
