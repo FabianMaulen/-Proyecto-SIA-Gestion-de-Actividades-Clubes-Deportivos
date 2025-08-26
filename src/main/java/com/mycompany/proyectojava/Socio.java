@@ -13,6 +13,8 @@ public class Socio {
         this.NroCelular = numCel;
     }
 
+    public Socio(){}
+
     public String getNombre() {
         return Nombre;
     }
