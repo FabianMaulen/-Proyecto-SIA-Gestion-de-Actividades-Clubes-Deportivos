@@ -2,7 +2,8 @@
 import java.util.List;
 
 public class bloqueHorario {
-    
+
+
     private boolean disponibilidad;
     private List <Socio> sociosAsistentes;
     private Actividad infoActividad;
@@ -30,5 +31,6 @@ public class bloqueHorario {
     public Actividad infoActividad() {
         return infoActividad;
     }
-    
+
+
 }

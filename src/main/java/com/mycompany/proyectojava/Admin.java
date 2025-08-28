@@ -34,4 +34,15 @@ public class Admin {
     public void setRut(String rut) {
         this.rut = rut;
     }
+
+    public boolean isAdmin(String rut) {
+
+        if (rut.equals("11.111.111-1")) {
+            return true;
+        }
+
+        return false;
+
+    }
+
 }

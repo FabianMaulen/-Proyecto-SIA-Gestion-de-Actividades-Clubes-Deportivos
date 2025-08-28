@@ -28,6 +28,5 @@ public class Actividad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
+
 }
