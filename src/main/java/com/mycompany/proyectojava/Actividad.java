@@ -4,6 +4,15 @@ public class Actividad {
     private int horaInicio;
     private int horaFin;
     private String descripcion;
+    private int dia;
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
 
     public int getHoraInicio() {
         return horaInicio;

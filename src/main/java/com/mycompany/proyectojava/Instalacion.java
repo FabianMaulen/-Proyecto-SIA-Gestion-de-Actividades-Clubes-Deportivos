@@ -1,12 +1,14 @@
 public class Instalacion {
     private String tipo;
     private int capacidad;
+    private String direccion;
     private bloqueHorario [][] planificacion = new bloqueHorario [7][12];
 
-    public Instalacion(String tipo, int capacidad, bloqueHorario[][] planificacion) {
+    public Instalacion(String tipo, int capacidad, bloqueHorario[][] planificacion,String direccion) {
         this.tipo = tipo;
         this.capacidad = capacidad;
         this.planificacion = planificacion;
+        this.direccion = direccion ;
     }
 
     public Instalacion(){}
@@ -45,5 +47,33 @@ public class Instalacion {
             }
         }
         return true;
+    }
+
+    public String getDireccion() {
+        return direccion;
+
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+
+
+
+
+    public void borrarActividad(int dia, int horaInicio, int horaFin, bloqueHorario[][] matriz) {
+        int inicio = horaInicio - 8;
+        int fin = horaFin - 8;
+
+        if (dia < 0 || dia >= 7 || inicio < 0 || fin >= 12) {
+            System.out.println("Error: parámetros fuera de rango.");
+            return;
+        }
+
+        for (int i = inicio; i < fin; i++) {
+            matriz[dia-1][i] = null;
+        }
+        System.out.println("Actividad eliminada en día " + dia + " desde " + horaInicio + " hasta " + horaFin);
     }
 }

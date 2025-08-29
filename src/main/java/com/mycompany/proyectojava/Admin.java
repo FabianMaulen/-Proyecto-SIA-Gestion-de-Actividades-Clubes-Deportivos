@@ -19,7 +19,7 @@ public class Admin {
         return correo;
     }
 
-    public String getRut() {
+    public  String getRut() {
         return rut;
     }
 
@@ -37,11 +37,7 @@ public class Admin {
 
     public boolean isAdmin(String rut) {
 
-        if (rut.equals("11.111.111-1")) {
-            return true;
-        }
-
-        return false;
+        return rut.equals("11.111.111-1");
 
     }
 
