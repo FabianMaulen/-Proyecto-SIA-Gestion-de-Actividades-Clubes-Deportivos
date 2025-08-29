@@ -233,6 +233,8 @@ public class ClubDeportivo {
                     socio.getNroCelular(),
                     socio.getEmail());
         } else {
+
+
             System.out.println("No se encontró ningún socio con el RUT: " + rut);
         }
     }

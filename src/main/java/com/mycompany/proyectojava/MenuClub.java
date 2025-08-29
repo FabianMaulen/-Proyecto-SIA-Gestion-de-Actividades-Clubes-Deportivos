@@ -9,9 +9,6 @@ public class MenuClub {
     }
 
 
-
-
-
     public void mostrarMenuAdmin(String rut) {
         Scanner sc = new Scanner(System.in);
 
