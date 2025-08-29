@@ -104,7 +104,7 @@ public class MenuClub {
 
                     System.out.println("\n--- Instalaciones disponibles ---");
                     for (int i = 0; i < lista.size(); i++) {
-                        System.out.println(i + ". " + lista.get(i).getTipo() + " | Dirección: " + lista.get(i).getDireccion());
+                        System.out.println(i +". " + lista.get(i).getTipo() + " | Dirección: " + lista.get(i).getDireccion());
                     }
 
                     System.out.print("Seleccione instalación por índice: ");

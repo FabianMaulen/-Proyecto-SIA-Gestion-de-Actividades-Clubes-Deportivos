@@ -75,6 +75,9 @@ public class ClubDeportivo {
             i.setTipo(sc.nextLine());
             System.out.print("Ingresa capacidad de nueva instalacion: ");
             i.setCapacidad(Integer.parseInt(sc.nextLine()));
+            System.out.print("Ingresa la Direccion de la instalaciom ");
+            i.setDireccion(sc.nextLine());
+
 
             return i;
 
@@ -154,7 +157,7 @@ public class ClubDeportivo {
         return a;
     }
 
-    public boolean agregarActividadDisponible(String rut) {
+    public boolean  agregarActividadDisponible(String rut) {
         Actividad a = crearActividadDesdeConsola(rut); // ← se crea dentro del método
 
         if (a == null) {
@@ -188,9 +191,11 @@ public class ClubDeportivo {
             bloqueHorario b = inst.getPlanificacion()[dia - 1][h - 8];
             b.setDescripcion(a); // guarda la actividad en el bloque
             b.setDisponibilidad(false); // marca el bloque como ocupado
-        }
+            System.out.println("Bloque asignado: Día " + dia + ", Hora " + h + ":00 → " + a.getDescripcion());
 
+        }
         System.out.println("Actividad creada y asignada correctamente.");
+
         return true;
     }
 
@@ -206,11 +211,14 @@ public class ClubDeportivo {
         System.out.printf("%-6s | %-20s%n", "Hora", "Actividad");
         System.out.println("----------------------------");
         for (int i = 0; i < 12; i++) {
-            if((ins.getPlanificacion()[dia-1][i].getInfoActividad()).equals("")){
-                System.out.printf("%-6s | %-20s%n", (i+8)+":00", "Sin actividad");
+            Actividad act = ins.getPlanificacion()[dia - 1][i].getInfoActividad();
+
+            if (act == null || act.getDescripcion().equals("")) {
+                System.out.printf("%-6s | %-20s%n", (i + 8) + ":00", "Sin actividad");
+            } else {
+                System.out.printf("%-6s | %-20s%n", (i + 8) + ":00", act.getDescripcion());
             }
-            else
-                System.out.printf("%-6s | %-20s%n", (i+8)+":00", ins.getPlanificacion()[dia-1][i].getInfoActividad());
+
         }
     }
 

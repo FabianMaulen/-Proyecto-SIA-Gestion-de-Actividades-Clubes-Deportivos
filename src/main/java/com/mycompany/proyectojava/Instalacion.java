@@ -11,7 +11,10 @@ public class Instalacion {
         this.direccion = direccion ;
     }
 
-    public Instalacion(){}
+    public Instalacion(){
+        inicializarHorario();
+    }
+
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
@@ -58,9 +61,13 @@ public class Instalacion {
         this.direccion = direccion;
     }
 
-
-
-
+    public void inicializarHorario() {
+        for (int d = 0; d < 7; d++) {
+            for (int h = 0; h < 12; h++) {
+                planificacion[d][h] = new bloqueHorario();
+            }
+        }
+    }
 
     public void borrarActividad(int dia, int horaInicio, int horaFin, bloqueHorario[][] matriz) {
         int inicio = horaInicio - 8;
@@ -76,4 +83,6 @@ public class Instalacion {
         }
         System.out.println("Actividad eliminada en día " + dia + " desde " + horaInicio + " hasta " + horaFin);
     }
+
+
 }
