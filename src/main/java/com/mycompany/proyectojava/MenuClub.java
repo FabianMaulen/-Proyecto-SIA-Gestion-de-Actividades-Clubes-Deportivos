@@ -61,7 +61,7 @@ public class MenuClub {
                     club.mostrarActividadDia(seleccionada);
                     break;
 
-                case "5" :
+                case "5":
                     club.mostrarSocio(club.getSociosPorRut());
                     break;
 
@@ -123,7 +123,6 @@ public class MenuClub {
     }
 
 
-
     public void iniciar() {
         Scanner sc = new Scanner(System.in);
         System.out.println("=== Bienvenido al Club Deportivo ===");
@@ -145,9 +144,21 @@ public class MenuClub {
                 mostrarMenuSocio(rut);
             } else {
                 System.out.println("RUT no registrado en el sistema.");
+                System.out.print("¿Desea registrarse como nuevo socio? (Si/No): ");
+                String respuesta = sc.nextLine();
+
+                if (respuesta.equalsIgnoreCase("SI")) {
+                    Socio nuevo = club.crearSocio();
+                    if (club.agregarSocio(nuevo)) {
+                        System.out.println("Registro exitoso. Bienvenido, " + nuevo.getNombre() + ".");
+                        mostrarMenuSocio(nuevo.getRut());
+                    } else {
+                        System.out.println("No se pudo registrar el socio. El RUT ya está en uso.");
+                    }
+                } else {
+                    System.out.println("Volviendo al inicio...");
+                }
             }
         }
     }
-
-
 }

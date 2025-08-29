@@ -45,4 +45,9 @@ public class Socio {
     public void setNroCelular(String NroCelular) {
         this.NroCelular = NroCelular;
     }
+    public Socio(String nombre, String edad, String rut) {
+        this.Nombre = nombre;
+        this.edad = edad;
+        this.Rut = rut;
+    }
 }

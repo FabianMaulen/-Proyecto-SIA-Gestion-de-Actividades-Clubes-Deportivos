@@ -8,6 +8,8 @@ public class ClubDeportivo {
         private Admin administrador;
         private ArrayList<Instalacion> instalaciones;
 
+
+
         public ClubDeportivo() {
             this.administrador = new Admin("Fabian", "admin@club.cl", "11.111.111-1");
             this.sociosPorRut = new HashMap<String,Socio>();
