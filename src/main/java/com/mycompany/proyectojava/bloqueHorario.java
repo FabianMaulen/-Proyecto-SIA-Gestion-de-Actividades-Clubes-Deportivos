@@ -32,5 +32,7 @@ public class bloqueHorario {
         return infoActividad;
     }
 
-
+    public Actividad getInfoActividad() {
+        return infoActividad;
+    }
 }

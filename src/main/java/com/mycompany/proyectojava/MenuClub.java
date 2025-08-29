@@ -18,9 +18,10 @@ public class MenuClub {
         while (true) {
             System.out.println("\n--- Menú Administrador ---");
             System.out.println("1. Crear actividad");
-            System.out.println("2. Asignar actividad al horario");
-            System.out.println("3. Ver instalaciones");
-            System.out.println("4. Crear nueva instalación");
+            System.out.println("2. Mostrar Instalaciones");
+            System.out.println("3. Crear Nueva Instalacion");
+            System.out.println("4. MostrarActividad");
+            System.out.println("5. Mostrar Socio");
             System.out.println("0. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
 
@@ -35,6 +36,40 @@ public class MenuClub {
                     }
                     break;
 
+                case "2":
+                    club.mostrarInstalaciones();
+                    break;
+
+                case "3":
+                    Instalacion nuevaInst = club.crearInstalacion();
+                    if (club.agregarInstalacion(nuevaInst)) {
+                        System.out.println("Instalacion agregada correctamente.");
+                    } else {
+                        System.out.println("La instalacion ya existe o no se pudo agregar.");
+                    }
+                    break;
+
+                case "4":
+                    ArrayList<Instalacion> lista = club.getInstalaciones();
+
+                    System.out.println("\n--- Instalaciones disponibles ---");
+                    for (int i = 0; i < lista.size(); i++) {
+                        System.out.println(i + ". " + lista.get(i).getTipo() + " | Dirección: " + lista.get(i).getDireccion());
+                    }
+
+                    System.out.print("Seleccione instalación por índice: ");
+                    int index = Integer.parseInt(sc.nextLine());
+
+                    Instalacion seleccionada = lista.get(index);
+                    club.mostrarActividadDia(seleccionada);
+                    break;
+
+                case "5" :
+                    club.mostrarSocio(club.getSociosPorRut());
+                    break;
+
+                default:
+                    System.out.println("Opcion invalida. Intente nuevamente.");
             }
 
 

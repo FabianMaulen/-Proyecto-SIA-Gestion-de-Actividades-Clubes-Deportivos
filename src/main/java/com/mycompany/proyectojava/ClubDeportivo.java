@@ -19,11 +19,11 @@ public class ClubDeportivo {
             return administrador;
         }
 
-        public List<Instalacion> getInstalaciones() {
+        public ArrayList<Instalacion> getInstalaciones() {
             return instalaciones;
         }
 
-        public Map<String, Socio> getSociosPorRut() {
+        public HashMap<String, Socio> getSociosPorRut() {
         return sociosPorRut;
     }
 
@@ -78,6 +78,8 @@ public class ClubDeportivo {
 
         }
 
+
+
         //Funcion para agregar una instalacion a mi arraylist
         public boolean agregarInstalacion(Instalacion i){
             if (instalaciones.contains(i)){
@@ -89,7 +91,7 @@ public class ClubDeportivo {
 
 
 
-        public void mostrarInstalaciones(ArrayList<Instalacion> instalaciones) {
+        public void mostrarInstalaciones() {
         int contador = 1;
         for (Instalacion i : instalaciones) {
             System.out.println("Instalación " + contador + " : "
@@ -97,6 +99,7 @@ public class ClubDeportivo {
             contador++;
         }
     }
+
 
     public Actividad crearActividadDesdeConsola(String rut) {
         Scanner sc = new Scanner(System.in);
@@ -158,7 +161,7 @@ public class ClubDeportivo {
         }
 
         Scanner sc = new Scanner(System.in);
-        mostrarInstalaciones(instalaciones);
+        mostrarInstalaciones();
 
         System.out.print("Seleccione instalacion por indice: ");
         int index = sc.nextInt();
@@ -189,8 +192,50 @@ public class ClubDeportivo {
         return true;
     }
 
+    public void mostrarActividadDia( Instalacion ins) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el día (1 a 7): ");
+        int dia = sc.nextInt();
+        if (dia <= 0 || dia > 7) {
+            System.out.println("Parametros de busqueda invalidos");
+            return;
+        }
+
+        System.out.printf("%-6s | %-20s%n", "Hora", "Actividad");
+        System.out.println("----------------------------");
+        for (int i = 0; i < 12; i++) {
+            if((ins.getPlanificacion()[dia-1][i].getInfoActividad()).equals("")){
+                System.out.printf("%-6s | %-20s%n", (i+8)+":00", "Sin actividad");
+            }
+            else
+                System.out.printf("%-6s | %-20s%n", (i+8)+":00", ins.getPlanificacion()[dia-1][i].getInfoActividad());
+        }
+    }
 
 
+    public void mostrarSocio(HashMap<String, Socio> sociosPorRut) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Ingrese el RUT del socio a buscar (formato 11.111.111-1): ");
+        String rut = sc.nextLine();
+
+        if (sociosPorRut.containsKey(rut)) {
+            Socio socio = sociosPorRut.get(rut);
+
+            System.out.printf("%-12s | %-20s | %-5s | %-12s | %-25s%n",
+                    "RUT", "Nombre", "Edad", "Celular", "Email");
+            System.out.println("-----------------------------------------------------------------------------------------");
+
+            System.out.printf("%-12s | %-20s | %-5d | %-12s | %-25s%n",
+                    socio.getRut(),
+                    socio.getNombre(),
+                    socio.getEdad(),
+                    socio.getNroCelular(),
+                    socio.getEmail());
+        } else {
+            System.out.println("No se encontró ningún socio con el RUT: " + rut);
+        }
+    }
 
 
 }
