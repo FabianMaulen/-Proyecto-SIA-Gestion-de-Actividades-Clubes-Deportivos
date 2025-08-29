@@ -76,6 +76,57 @@ public class MenuClub {
         }
     }
 
+    public void mostrarMenuSocio(String rut) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n--- Menú Socio ---");
+            System.out.println("1. Crear actividad");
+            System.out.println("2. Mostrar Instalaciones");
+            System.out.println("3. MostrarActividad");
+            System.out.println("0. Cerrar sesión");
+            System.out.print("Seleccione una opción: ");
+
+            String entrada = sc.nextLine();
+
+            switch (entrada) {
+                case "1":
+                    if (club.agregarActividadDisponible(rut)) {
+                        System.out.println(" Actividad creada y asignada correctamente.");
+                    } else {
+                        System.out.println("️ No se pudo completar el proceso.");
+                    }
+                    break;
+
+                case "2":
+                    club.mostrarInstalaciones();
+                    break;
+
+                case "3":
+                    ArrayList<Instalacion> lista = club.getInstalaciones();
+
+                    System.out.println("\n--- Instalaciones disponibles ---");
+                    for (int i = 0; i < lista.size(); i++) {
+                        System.out.println(i + ". " + lista.get(i).getTipo() + " | Dirección: " + lista.get(i).getDireccion());
+                    }
+
+                    System.out.print("Seleccione instalación por índice: ");
+                    int index = Integer.parseInt(sc.nextLine());
+
+                    Instalacion seleccionada = lista.get(index);
+                    club.mostrarActividadDia(seleccionada);
+                    break;
+
+                default:
+                    System.out.println("Opcion invalida. Intente nuevamente.");
+            }
+
+
+        }
+    }
+
+
+
     public void iniciar() {
         Scanner sc = new Scanner(System.in);
         System.out.println("=== Bienvenido al Club Deportivo ===");
@@ -94,7 +145,7 @@ public class MenuClub {
                 mostrarMenuAdmin(rut);
             } else if (club.buscarSocioPorRut(rut) != null) {
                 System.out.println("Identificado como SOCIO.");
-                //mostrarMenuSocio(rut);
+                mostrarMenuSocio(rut);
             } else {
                 System.out.println("RUT no registrado en el sistema.");
             }
