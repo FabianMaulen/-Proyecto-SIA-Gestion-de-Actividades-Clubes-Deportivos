@@ -41,8 +41,6 @@ public class Main {
             b.setDescripcion(natacion);
             b.setDisponibilidad(false);
         }
-
-
         menu.iniciar();
 
 

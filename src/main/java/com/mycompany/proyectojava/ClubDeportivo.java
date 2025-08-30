@@ -191,12 +191,75 @@ public class ClubDeportivo {
             bloqueHorario b = inst.getPlanificacion()[dia - 1][h - 8];
             b.setDescripcion(a); // guarda la actividad en el bloque
             b.setDisponibilidad(false); // marca el bloque como ocupado
+            b.setInfoActividad(a);
             System.out.println("Bloque asignado: Día " + dia + ", Hora " + h + ":00 → " + a.getDescripcion());
 
         }
         System.out.println("Actividad creada y asignada correctamente.");
 
         return true;
+    }
+
+
+    public Boolean agregarSocioActividad(Socio socio, Instalacion ins, int dia, int hora) {
+        if (ins == null || socio == null || dia < 1 || dia > 7 || hora < 8 || hora > 19) {
+            return false;
+        }
+
+        bloqueHorario bloque = ins.getPlanificacion()[dia - 1][hora - 8];
+        if (bloque == null || bloque.getInfoActividad() == null) {
+            System.out.println("No hay actividad en el bloque [" + dia + "][" + hora + "].");
+            return false;
+        }
+
+        bloque.getSociosAsistentes().add(socio);
+        return true;
+    }
+
+
+    public void inscribirSocioEnActividadDesdeMenu() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Ingrese RUT del socio: ");
+        String rut = sc.nextLine();
+        Socio socio = buscarSocioPorRut(rut);
+
+        if (socio == null) {
+            System.out.println("Socio no encontrado.");
+            return;
+        }
+
+        mostrarInstalaciones(); // muestra índice y tipo
+
+        System.out.print("Seleccione instalacion por indice: ");
+        int numero = sc.nextInt();
+        sc.nextLine();
+        int index = numero - 1 ;
+
+
+        if (index < 0 || index >= instalaciones.size()) {
+            System.out.println("Indice invalido.");
+            return;
+        }
+
+        Instalacion inst = instalaciones.get(index);
+
+        System.out.print("Ingrese dia (1 a 7): ");
+        int dia = sc.nextInt();
+
+        System.out.print("Ingrese hora (8 a 19): ");
+        int hora = sc.nextInt();
+
+        boolean exito = agregarSocioActividad(socio, inst, dia, hora);
+
+
+        if (exito) {
+            System.out.println("Socio " + socio.getNombre() + " inscrito en actividad: " +
+                    inst.getPlanificacion()[dia - 1][hora - 8].getInfoActividad().getDescripcion() +
+                    " el día " + dia + " a las " + hora + ":00 en " + inst.getTipo());
+        } else {
+            System.out.println("No se pudo inscribir al socio en esa actividad.");
+        }
     }
 
     public void mostrarActividadDia( Instalacion ins) {
@@ -245,7 +308,7 @@ public class ClubDeportivo {
         } else {
 
 
-            System.out.println("No se encontró ningún socio con el RUT: " + rut);
+            System.out.println("No se encontro ningun socio con el RUT: " + rut);
         }
     }
 

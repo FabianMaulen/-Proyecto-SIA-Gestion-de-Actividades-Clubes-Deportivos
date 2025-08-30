@@ -1,18 +1,27 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class bloqueHorario {
 
 
     private boolean disponibilidad = true;
-    private List <Socio> sociosAsistentes;
+    private ArrayList<Socio> sociosAsistentes;
     private Actividad infoActividad;
 
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 
-    public void setSociosAsistentes(List<Socio> sociosAsistentes) {
+    public bloqueHorario() {
+        this.sociosAsistentes = new ArrayList<Socio>();
+    }
+
+    public void setInfoActividad(Actividad infoActividad) {
+        this.infoActividad = infoActividad;
+    }
+
+    public void setSociosAsistentes(ArrayList<Socio> sociosAsistentes) {
         this.sociosAsistentes = sociosAsistentes;
     }
 

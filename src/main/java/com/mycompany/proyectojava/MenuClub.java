@@ -85,6 +85,7 @@ public class MenuClub {
             System.out.println("1. Crear actividad");
             System.out.println("2. Mostrar Instalaciones");
             System.out.println("3. MostrarActividad");
+            System.out.println("4. Inscribirse a una Actividad");
             System.out.println("0. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
 
@@ -116,6 +117,10 @@ public class MenuClub {
 
                     Instalacion seleccionada = lista.get(index);
                     club.mostrarActividadDia(seleccionada);
+                    break;
+
+                case "4" :
+                    club.inscribirSocioEnActividadDesdeMenu();
                     break;
 
                 default:
