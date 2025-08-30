@@ -158,7 +158,7 @@ public class ClubDeportivo {
     }
 
     public boolean  agregarActividadDisponible(String rut) {
-        Actividad a = crearActividadDesdeConsola(rut); // ← se crea dentro del método
+        Actividad a = crearActividadDesdeConsola(rut); // ← se crea dentro del metodo
 
         if (a == null) {
             System.out.println("No se pudo crear la actividad.");
@@ -248,6 +248,8 @@ public class ClubDeportivo {
             System.out.println("No se encontró ningún socio con el RUT: " + rut);
         }
     }
+
+
 
 
 }

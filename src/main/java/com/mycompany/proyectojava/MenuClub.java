@@ -25,6 +25,10 @@ public class MenuClub {
             String entrada = sc.nextLine();
 
             switch (entrada) {
+                case "0":
+                    System.out.println("Cerrando Sesion...");
+                    return;
+
                 case "1":
                     if (club.agregarActividadDisponible(rut)) {
                         System.out.println(" Actividad creada y asignada correctamente.");
@@ -51,11 +55,11 @@ public class MenuClub {
 
                     System.out.println("\n--- Instalaciones disponibles ---");
                     for (int i = 0; i < lista.size(); i++) {
-                        System.out.println(i + ". " + lista.get(i).getTipo() + " | Dirección: " + lista.get(i).getDireccion());
+                        System.out.println(i+  ". " + lista.get(i).getTipo() + " | Dirección: " + lista.get(i).getDireccion());
                     }
 
                     System.out.print("Seleccione instalación por índice: ");
-                    int index = Integer.parseInt(sc.nextLine());
+                    int index = Integer.parseInt(sc.nextLine()) ;
 
                     Instalacion seleccionada = lista.get(index);
                     club.mostrarActividadDia(seleccionada);
@@ -121,7 +125,6 @@ public class MenuClub {
 
         }
     }
-
 
     public void iniciar() {
         Scanner sc = new Scanner(System.in);
