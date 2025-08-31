@@ -92,6 +92,10 @@ public class MenuClub {
             String entrada = sc.nextLine();
 
             switch (entrada) {
+                case "0":
+                    System.out.println("Cerrando Sesion...");
+                    return;
+
                 case "1":
                     if (club.agregarActividadDisponible(rut)) {
                         System.out.println(" Actividad creada y asignada correctamente.");
@@ -157,7 +161,7 @@ public class MenuClub {
 
                 if (respuesta.equalsIgnoreCase("SI")) {
                     Socio nuevo = club.crearSocio();
-                    if (club.agregarSocio(nuevo)) {
+                        if (club.agregarSocio(nuevo)) {
                         System.out.println("Registro exitoso. Bienvenido, " + nuevo.getNombre() + ".");
                         mostrarMenuSocio(nuevo.getRut());
                     } else {

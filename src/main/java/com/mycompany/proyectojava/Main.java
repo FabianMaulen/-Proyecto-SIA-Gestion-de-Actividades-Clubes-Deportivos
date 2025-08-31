@@ -2,9 +2,11 @@ public class Main {
     public static void main(String[] args) {
         ClubDeportivo club = new ClubDeportivo();
         MenuClub menu = new MenuClub(club);
-        club.getSociosPorRut().put("21.784.233-6", new Socio("Mario Vidal", "20", "21.784.233-6"));
-        club.getSociosPorRut().put("21.957.957-8", new Socio("Fabian Maulen", "19", "21.957.957-8"));
-        club.getSociosPorRut().put("21.038.139-7", new Socio("Carlos Soto", "22", "21.038.139-7"));
+
+        club.agregarSocio("Mario Vidal", "20", "21.784.233-6");
+        club.agregarSocio("Fabian Maulen", "19", "21.957.957-8");
+        club.agregarSocio("Carlos Soto", "22", "21.038.139-7");
+
         Instalacion cancha = new Instalacion();
         cancha.setTipo("Cancha de futbol");
         cancha.setDireccion("Av. Las Torres 123");
@@ -28,19 +30,8 @@ public class Main {
         natacion.setHoraFin(17);    // 17:00
         natacion.setDia(5);         // Viernes
 
-        // Asignar fútbol a la cancha (martes, 10–12)
-        for (int h = futbol.getHoraInicio(); h < futbol.getHoraFin(); h++) {
-            bloqueHorario b = cancha.getPlanificacion()[futbol.getDia() - 1][h - 8];
-            b.setDescripcion(futbol);
-            b.setDisponibilidad(false);
-        }
-
-// Asignar natación a la piscina (viernes, 15–17)
-        for (int h = natacion.getHoraInicio(); h < natacion.getHoraFin(); h++) {
-            bloqueHorario b = piscina.getPlanificacion()[natacion.getDia() - 1][h - 8];
-            b.setDescripcion(natacion);
-            b.setDisponibilidad(false);
-        }
+        club.agregarActividadDisponible("21.784.233-6", "Fútbol juvenil", 2, 10, 12, 0);
+        club.agregarActividadDisponible("21.957.957-8", "Natación libre", 5, 15, 17, 1);
         menu.iniciar();
 
 

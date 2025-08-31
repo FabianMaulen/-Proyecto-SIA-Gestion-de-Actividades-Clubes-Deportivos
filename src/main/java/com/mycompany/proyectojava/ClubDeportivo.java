@@ -62,7 +62,28 @@ public class ClubDeportivo {
             return true;
         }
 
-        public Socio buscarSocioPorRut(String rut) {
+    public boolean agregarSocio(String nombre, String edad, String rut) {
+        Socio nuevo = new Socio(nombre, edad, rut);
+        return agregarSocio(nuevo); // ← llamada directa y válida
+    }
+
+    public boolean agregarSocioDesdeConsola() {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Nombre del socio: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Edad: ");
+        String edad = sc.nextLine();
+
+        System.out.print("RUT: ");
+        String rut = sc.nextLine();
+
+        return agregarSocio(nombre, edad, rut);
+    }
+
+
+    public Socio buscarSocioPorRut(String rut) {
             return sociosPorRut.get(rut);
 
         }
@@ -199,6 +220,48 @@ public class ClubDeportivo {
 
         return true;
     }
+
+    public boolean agregarActividadDisponible(String rut, String descripcion, int dia, int horaInicio, int horaFin, int indexInstalacion) {
+        if (!sociosPorRut.containsKey(rut) && !administrador.getRut().equals(rut)) {
+            System.out.println("RUT no registrado.");
+            return false;
+        }
+
+        if (dia < 1 || dia > 7 || horaInicio < 8 || horaFin > 20 || horaFin <= horaInicio) {
+            System.out.println("Rango horario invalido.");
+            return false;
+        }
+
+        if (indexInstalacion < 0 || indexInstalacion >= instalaciones.size()) {
+            System.out.println("Instalacion invalida.");
+            return false;
+        }
+
+        Actividad a = new Actividad();
+        a.setDescripcion(descripcion);
+        a.setDia(dia);
+        a.setHoraInicio(horaInicio);
+        a.setHoraFin(horaFin);
+
+        Instalacion inst = instalaciones.get(indexInstalacion);
+        boolean disponible = inst.estaDisponible(dia, horaInicio, horaFin);
+
+        if (!disponible) {
+            System.out.println("No hay disponibilidad en ese rango.");
+            return false;
+        }
+
+        for (int h = horaInicio; h < horaFin; h++) {
+            bloqueHorario b = inst.getPlanificacion()[dia - 1][h - 8];
+            b.setDescripcion(a);
+            b.setDisponibilidad(false);
+            b.setInfoActividad(a);
+        }
+
+        System.out.println("Actividad '" + descripcion + "' creada y asignada correctamente.");
+        return true;
+    }
+
 
 
     public Boolean agregarSocioActividad(Socio socio, Instalacion ins, int dia, int hora) {
