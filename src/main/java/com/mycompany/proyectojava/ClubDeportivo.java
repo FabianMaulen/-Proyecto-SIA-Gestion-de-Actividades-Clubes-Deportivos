@@ -375,7 +375,42 @@ public class ClubDeportivo {
         }
     }
 
+    public void mostrarBloqueHorarioDesdeConsola() {
+        Scanner sc = new Scanner(System.in);
+        mostrarInstalaciones();
 
+        System.out.print("Seleccione instalacion por numero: ");
+        int index = sc.nextInt() - 1;
+        sc.nextLine();
 
+        System.out.print("Ingrese dia (1 a 7): ");
+        int dia = sc.nextInt();
+
+        System.out.print("Ingrese hora (8 a 19): ");
+        int hora = sc.nextInt();
+
+        if (index < 0 || index >= instalaciones.size()) {
+            System.out.println("Numero de instalacion invalido.");
+            return;
+        }
+
+        Instalacion inst = instalaciones.get(index);
+        bloqueHorario b = inst.getPlanificacion()[dia - 1][hora - 8];
+
+        if (b == null || b.getInfoActividad() == null) {
+            System.out.println("No hay actividad en ese bloque.");
+            return;
+        }
+
+        System.out.println("Dia " + dia + " a las " + hora + ":00");
+        System.out.println("Actividad: " + b.getInfoActividad().getDescripcion());
+        System.out.println("Socios inscritos:");
+        for (Socio s : b.getSociosAsistentes()) {
+            System.out.println(" - " + s.getNombre() + " (" + s.getEdad() + " años)");
+        }
+
+        int cuposRestantes = inst.getCapacidad() - b.getSociosAsistentes().size();
+        System.out.println("Cupos disponibles: " + cuposRestantes + " / " + inst.getCapacidad());
+    }
 
 }

@@ -86,6 +86,7 @@ public class MenuClub {
             System.out.println("2. Mostrar Instalaciones");
             System.out.println("3. MostrarActividad");
             System.out.println("4. Inscribirse a una Actividad");
+            System.out.println("5. Mostrar información completa de un bloque horario");
             System.out.println("0. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
 
@@ -125,6 +126,10 @@ public class MenuClub {
 
                 case "4" :
                     club.inscribirSocioEnActividadDesdeMenu();
+                    break;
+
+                case "5" :
+                    club.mostrarBloqueHorarioDesdeConsola();
                     break;
 
                 default:
