@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
         ClubDeportivo club = new ClubDeportivo();
@@ -32,8 +34,7 @@ public class Main {
 
         club.agregarActividadDisponible("21.784.233-6", "Fútbol juvenil", 2, 10, 12, 0);
         club.agregarActividadDisponible("21.957.957-8", "Natación libre", 5, 15, 17, 1);
-        menu.iniciar();
 
-
+        SwingUtilities.invokeLater(() -> new VentanaLogin(club));
     }
 }
