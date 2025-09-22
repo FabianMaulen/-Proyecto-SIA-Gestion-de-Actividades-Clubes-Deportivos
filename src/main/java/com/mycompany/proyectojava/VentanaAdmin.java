@@ -72,7 +72,7 @@ public class VentanaAdmin extends JFrame {
                 JOptionPane.showMessageDialog(this, "No hay instalaciones registradas.");
                 return;
             }
-            StringBuilder info = new StringBuilder(); // ← aquí lo creas
+            StringBuilder info = new StringBuilder();
 
             for (int i = 0; i < club.getInstalaciones().size(); i++) {
                 Instalacion inst = club.getInstalaciones().get(i);
