@@ -65,12 +65,11 @@ public class VentanaSocio extends JFrame {
                 JOptionPane.showMessageDialog(this, "No hay instalaciones registradas.");
                 return;
             }
-            StringBuilder info = new StringBuilder();
-            int contador = 1;
+            StringBuilder info = new StringBuilder(); // ← aquí lo creas
 
-            for(Instalacion i : club.getInstalaciones()){
-                info.append("Instalacion ").append(contador).append(": ").append(i.getTipo()).append(" - ").append(i.getDireccion()).append("\n");
-                contador++;
+            for (int i = 0; i < club.getInstalaciones().size(); i++) {
+                Instalacion inst = club.getInstalaciones().get(i);
+                info.append("Instalación ").append(i + 1).append(": ").append(inst.getTipo()).append(" - ").append(inst.getDireccion()).append("\n");
             }
             JOptionPane.showMessageDialog(this, info.toString(), "Instalaciones", JOptionPane.INFORMATION_MESSAGE);
         });
