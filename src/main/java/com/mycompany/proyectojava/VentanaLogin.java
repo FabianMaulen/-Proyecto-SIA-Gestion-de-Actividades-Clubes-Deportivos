@@ -42,14 +42,21 @@ public class VentanaLogin extends JFrame {
                 JOptionPane.showMessageDialog(null, "Bienvenido " + admin.getNombre());
                 new VentanaAdmin(club);
                 dispose();
+
+            } else if(club.buscarSocioPorRut(rutIngresado) != null) {
+                Socio socio = club.buscarSocioPorRut(rutIngresado);
+                JOptionPane.showMessageDialog(null, "Bienvenido " + socio.getNombre());
+                new VentanaSocio(socio, club);
+                dispose();
+
             } else {
-                // Si no coincide → error
                 JOptionPane.showMessageDialog(
                         this,
-                        "Usuario Incorrecto ",
+                        "Usuario Inexistente ",
                         "Error de Acceso",
                         JOptionPane.ERROR_MESSAGE
                 );
+
             }
         });
 

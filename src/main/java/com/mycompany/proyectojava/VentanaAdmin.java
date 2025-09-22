@@ -66,7 +66,8 @@ public class VentanaAdmin extends JFrame {
 
         //boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar  sesion");
-        btnCerrarSesion.setBounds(550, 20, 120, 25);
+        btnCerrarSesion.setBounds(550, 225, 120, 25);
+        btnCerrarSesion.setBackground(Color.PINK);
         btnCerrarSesion.setFocusPainted(false);
         panel.add(btnCerrarSesion);
 
