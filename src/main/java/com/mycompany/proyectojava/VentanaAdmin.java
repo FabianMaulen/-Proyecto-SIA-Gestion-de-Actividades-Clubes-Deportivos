@@ -38,30 +38,35 @@ public class VentanaAdmin extends JFrame {
         JButton btnCrearAct = new JButton("Crear Actividad");
         btnCrearAct.setBounds(100, 100, 160, 30);
         btnCrearAct.setFocusPainted(false);
+        btnCrearAct.setToolTipText("Crear Actividad");
         panel.add(btnCrearAct);
 
         //boton crear nueva instalacion
         JButton btnCrearInstalacion = new JButton("Crear Instalacion");
         btnCrearInstalacion.setBounds(100, 140, 160, 30);
         btnCrearInstalacion.setFocusPainted(false);
+        btnCrearInstalacion.setToolTipText("Crear Instalacion");
         panel.add(btnCrearInstalacion);
 
         //boton mostrar Socios
         JButton btnMostrarSocios = new JButton("Mostrar Socios");
         btnMostrarSocios.setBounds(100, 180, 160, 30);
         btnMostrarSocios.setFocusPainted(false);
+        btnMostrarSocios.setToolTipText("Mostrar Socios");
         panel.add(btnMostrarSocios);
 
         //boton mostrar actividades
         JButton btnMostrarActividad = new JButton("Mostrar Actividad");
         btnMostrarActividad.setBounds(300, 100, 160, 30);
         btnMostrarActividad.setFocusPainted(false);
+        btnMostrarActividad.setToolTipText("Mostrar Actividad");
         panel.add(btnMostrarActividad);
 
         //boton mostrar Inslataciones
         JButton btnMostrarInstalaciones = new JButton("Mostrar Instalaciones");
         btnMostrarInstalaciones.setBounds(300, 140, 160, 30);
         btnMostrarInstalaciones.setFocusPainted(false);
+        btnMostrarInstalaciones.setToolTipText("Mostrar Instalaciones");
         panel.add(btnMostrarInstalaciones);
 
         //boton Cerrar Sesion
@@ -69,6 +74,19 @@ public class VentanaAdmin extends JFrame {
         btnCerrarSesion.setBounds(550, 225, 120, 25);
         btnCerrarSesion.setBackground(Color.PINK);
         btnCerrarSesion.setFocusPainted(false);
+        btnCerrarSesion.addActionListener(e -> {
+            int respuesta = JOptionPane.showConfirmDialog(
+                    this,
+                    "Estas seguro que deseas cerrar Sesion?",
+                    "Confirmar cierre de sesion",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if(respuesta == JOptionPane.YES_OPTION){
+                dispose();
+                new VentanaLogin(club);
+            }
+        });
         panel.add(btnCerrarSesion);
 
         add(panel);

@@ -1,0 +1,14 @@
+# Archivos compilados
+*.class
+
+# Carpetas de salida
+/out/
+/build/
+
+# Configuración de IntelliJ
+*.iml
+.idea/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
