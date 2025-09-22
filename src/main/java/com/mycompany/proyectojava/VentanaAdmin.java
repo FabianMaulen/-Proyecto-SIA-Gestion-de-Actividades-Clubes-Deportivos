@@ -67,6 +67,20 @@ public class VentanaAdmin extends JFrame {
         btnMostrarInstalaciones.setBounds(300, 140, 160, 30);
         btnMostrarInstalaciones.setFocusPainted(false);
         btnMostrarInstalaciones.setToolTipText("Mostrar Instalaciones");
+        btnMostrarInstalaciones.addActionListener(e -> {
+            if (club.getInstalaciones().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay instalaciones registradas.");
+                return;
+            }
+            StringBuilder info = new StringBuilder();
+            int contador = 1;
+
+            for(Instalacion i : club.getInstalaciones()){
+                info.append("Instalacion ").append(contador).append(": ").append(i.getTipo()).append(" - ").append(i.getDireccion()).append("\n");
+                contador++;
+            }
+            JOptionPane.showMessageDialog(this, info.toString(), "Instalaciones", JOptionPane.INFORMATION_MESSAGE);
+        });
         panel.add(btnMostrarInstalaciones);
 
         //boton Cerrar Sesion
