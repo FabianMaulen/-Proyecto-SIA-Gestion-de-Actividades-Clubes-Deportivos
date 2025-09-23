@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class VentanaAdmin extends JFrame {
     private Admin admin;
     private ClubDeportivo club;
     private String RutAdmin;
-
 
     public VentanaAdmin(ClubDeportivo club) {
         this.club = club;
@@ -53,6 +53,20 @@ public class VentanaAdmin extends JFrame {
         btnMostrarSocios.setBounds(100, 180, 160, 30);
         btnMostrarSocios.setFocusPainted(false);
         btnMostrarSocios.setToolTipText("Mostrar Socios");
+        btnMostrarSocios.addActionListener(e -> {
+            if (club.getSociosPorRut().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay socios registrados.");
+                return;
+            }
+
+            StringBuilder info = new StringBuilder();
+            int contador = 1;
+
+            for (Socio socio : club.getSociosPorRut().values()) {  //--> bucle for-each para recorrer el hashMap de socios
+                info.append("Socio ").append(contador++).append(": ").append(socio.getNombre()).append(" - Rut: ").append(socio.getRut()).append("\n");
+            }
+            JOptionPane.showMessageDialog(this, info.toString(), "Socios registrados", JOptionPane.INFORMATION_MESSAGE);
+        });
         panel.add(btnMostrarSocios);
 
         //boton mostrar actividades
