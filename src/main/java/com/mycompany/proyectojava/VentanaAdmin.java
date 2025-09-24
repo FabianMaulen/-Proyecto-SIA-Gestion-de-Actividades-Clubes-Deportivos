@@ -39,6 +39,9 @@ public class VentanaAdmin extends JFrame {
         btnCrearAct.setBounds(100, 100, 160, 30);
         btnCrearAct.setFocusPainted(false);
         btnCrearAct.setToolTipText("Crear Actividad");
+        btnCrearAct.addActionListener(e -> {
+            new VentanaCrearActividad(club, RutAdmin);
+        });
         panel.add(btnCrearAct);
 
         //boton crear nueva instalacion
