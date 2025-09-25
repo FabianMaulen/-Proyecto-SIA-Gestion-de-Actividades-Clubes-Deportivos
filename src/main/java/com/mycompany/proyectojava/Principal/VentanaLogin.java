@@ -1,3 +1,5 @@
+package Principal;
+
 import javax.swing.*;
 
 public class VentanaLogin extends JFrame {

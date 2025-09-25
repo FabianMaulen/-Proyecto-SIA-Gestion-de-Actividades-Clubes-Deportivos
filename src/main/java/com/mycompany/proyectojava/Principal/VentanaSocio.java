@@ -1,3 +1,5 @@
+package Principal;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,8 +22,8 @@ public class VentanaSocio extends JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
-        //etiqueta Socio
-        JLabel lblSocio = new JLabel("Socio: " + socio.getNombre());
+        //etiqueta Principal.Socio
+        JLabel lblSocio = new JLabel("Principal.Socio: " + socio.getNombre());
         lblSocio.setBounds(100, 20, 300, 30);
         lblSocio.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(lblSocio);
@@ -32,27 +34,27 @@ public class VentanaSocio extends JFrame {
         panel.add(lblRutAdmin);
 
 
-        //funcionalidades del Socio
+        //funcionalidades del Principal.Socio
 
-        //boton crear Actividad
-        JButton btnCrearAct = new JButton("Crear Actividad");
+        //boton crear Principal.Actividad
+        JButton btnCrearAct = new JButton("Crear Principal.Actividad");
         btnCrearAct.setBounds(100, 100, 160, 30);
         btnCrearAct.setFocusPainted(false);
-        btnCrearAct.setToolTipText("Crear Actividad");
+        btnCrearAct.setToolTipText("Crear Principal.Actividad");
         panel.add(btnCrearAct);
 
         //boton Inscribirse a una actividad
-        JButton btnInscribirseAct = new JButton("Inscribirse a una Actividad");
+        JButton btnInscribirseAct = new JButton("Inscribirse a una Principal.Actividad");
         btnInscribirseAct.setBounds(100, 140, 160, 30);
         btnInscribirseAct.setFocusPainted(false);
-        btnInscribirseAct.setToolTipText("Inscribirse a una Actividad");
+        btnInscribirseAct.setToolTipText("Inscribirse a una Principal.Actividad");
         panel.add(btnInscribirseAct);
 
-        //boton Mostrar Actividad
-        JButton btnMostrarAct = new JButton("Mostrar Actividad");
+        //boton Mostrar Principal.Actividad
+        JButton btnMostrarAct = new JButton("Mostrar Principal.Actividad");
         btnMostrarAct.setBounds(100, 180, 160, 30);
         btnMostrarAct.setFocusPainted(false);
-        btnMostrarAct.setToolTipText("Mostrar Actividad");
+        btnMostrarAct.setToolTipText("Mostrar Principal.Actividad");
         panel.add(btnMostrarAct);
 
         //boton Mostrar Instalaciones

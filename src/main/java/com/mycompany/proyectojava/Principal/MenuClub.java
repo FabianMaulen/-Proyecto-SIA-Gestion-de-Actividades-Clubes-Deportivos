@@ -1,3 +1,5 @@
+package Principal;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,9 +18,9 @@ public class MenuClub {
             System.out.println("\n--- Menú Administrador ---");
             System.out.println("1. Crear actividad");
             System.out.println("2. Mostrar Instalaciones");
-            System.out.println("3. Crear Nueva Instalacion");
+            System.out.println("3. Crear Nueva Principal.Instalacion");
             System.out.println("4. MostrarActividad");
-            System.out.println("5. Mostrar Socio");
+            System.out.println("5. Mostrar Principal.Socio");
             System.out.println("0. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
 
@@ -31,7 +33,7 @@ public class MenuClub {
 
                 case "1":
                     if (club.agregarActividadDisponible(rut)) {
-                        System.out.println(" Actividad creada y asignada correctamente.");
+                        System.out.println(" Principal.Actividad creada y asignada correctamente.");
                     } else {
                         System.out.println("️ No se pudo completar el proceso.");
                     }
@@ -44,7 +46,7 @@ public class MenuClub {
                 case "3":
                     Instalacion nuevaInst = club.crearInstalacion();
                     if (club.agregarInstalacion(nuevaInst)) {
-                        System.out.println("Instalacion agregada correctamente.");
+                        System.out.println("Principal.Instalacion agregada correctamente.");
                     } else {
                         System.out.println("La instalacion ya existe o no se pudo agregar.");
                     }
@@ -81,11 +83,11 @@ public class MenuClub {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\n--- Menú Socio ---");
+            System.out.println("\n--- Menú Principal.Socio ---");
             System.out.println("1. Crear actividad");
             System.out.println("2. Mostrar Instalaciones");
             System.out.println("3. MostrarActividad");
-            System.out.println("4. Inscribirse a una Actividad");
+            System.out.println("4. Inscribirse a una Principal.Actividad");
             System.out.println("5. Mostrar información completa de un bloque horario");
             System.out.println("0. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
@@ -99,7 +101,7 @@ public class MenuClub {
 
                 case "1":
                     if (club.agregarActividadDisponible(rut)) {
-                        System.out.println(" Actividad creada y asignada correctamente.");
+                        System.out.println(" Principal.Actividad creada y asignada correctamente.");
                     } else {
                         System.out.println("️ No se pudo completar el proceso.");
                     }

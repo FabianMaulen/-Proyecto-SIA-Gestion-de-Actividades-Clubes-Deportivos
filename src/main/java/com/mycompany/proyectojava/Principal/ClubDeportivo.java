@@ -1,3 +1,5 @@
+package Principal;
+
 import java.util.*;
 
 
@@ -114,6 +116,14 @@ public class ClubDeportivo {
             instalaciones.add(i);
             return true;
         }
+    public Instalacion buscarInstalacionPorTipo(String tipo) {
+        for (Instalacion i : instalaciones) {
+            if (i.getTipo().equalsIgnoreCase(tipo)) {
+                return i;
+            }
+        }
+        return null;
+    }
 
 
 
@@ -216,7 +226,7 @@ public class ClubDeportivo {
             System.out.println("Bloque asignado: Día " + dia + ", Hora " + h + ":00 → " + a.getDescripcion());
 
         }
-        System.out.println("Actividad creada y asignada correctamente.");
+        System.out.println("Principal.Actividad creada y asignada correctamente.");
 
         return true;
     }
@@ -233,7 +243,7 @@ public class ClubDeportivo {
         }
 
         if (indexInstalacion < 0 || indexInstalacion >= instalaciones.size()) {
-            System.out.println("Instalacion invalida.");
+            System.out.println("Principal.Instalacion invalida.");
             return false;
         }
 
@@ -258,7 +268,7 @@ public class ClubDeportivo {
             b.setInfoActividad(a);
         }
 
-        System.out.println("Actividad '" + descripcion + "' creada y asignada correctamente.");
+        System.out.println("Principal.Actividad '" + descripcion + "' creada y asignada correctamente.");
         return true;
     }
 
@@ -288,7 +298,7 @@ public class ClubDeportivo {
         Socio socio = buscarSocioPorRut(rut);
 
         if (socio == null) {
-            System.out.println("Socio no encontrado.");
+            System.out.println("Principal.Socio no encontrado.");
             return;
         }
 
@@ -317,7 +327,7 @@ public class ClubDeportivo {
 
 
         if (exito) {
-            System.out.println("Socio " + socio.getNombre() + " inscrito en actividad: " +
+            System.out.println("Principal.Socio " + socio.getNombre() + " inscrito en actividad: " +
                     inst.getPlanificacion()[dia - 1][hora - 8].getInfoActividad().getDescripcion() +
                     " el día " + dia + " a las " + hora + ":00 en " + inst.getTipo());
         } else {
@@ -334,7 +344,7 @@ public class ClubDeportivo {
             return;
         }
 
-        System.out.printf("%-6s | %-20s%n", "Hora", "Actividad");
+        System.out.printf("%-6s | %-20s%n", "Hora", "Principal.Actividad");
         System.out.println("----------------------------");
         for (int i = 0; i < 12; i++) {
             Actividad act = ins.getPlanificacion()[dia - 1][i].getInfoActividad();
@@ -375,6 +385,8 @@ public class ClubDeportivo {
         }
     }
 
+
+
     public void mostrarBloqueHorarioDesdeConsola() {
         Scanner sc = new Scanner(System.in);
         mostrarInstalaciones();
@@ -403,7 +415,7 @@ public class ClubDeportivo {
         }
 
         System.out.println("Dia " + dia + " a las " + hora + ":00");
-        System.out.println("Actividad: " + b.getInfoActividad().getDescripcion());
+        System.out.println("Principal.Actividad: " + b.getInfoActividad().getDescripcion());
         System.out.println("Socios inscritos:");
         for (Socio s : b.getSociosAsistentes()) {
             System.out.println(" - " + s.getNombre() + " (" + s.getEdad() + " años)");
