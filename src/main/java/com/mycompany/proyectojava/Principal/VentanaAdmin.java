@@ -1,7 +1,6 @@
-package Principal;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class VentanaAdmin extends JFrame {
     private Admin admin;
@@ -36,17 +35,20 @@ public class VentanaAdmin extends JFrame {
         //funcionalidades del administrador
 
         //boton crear actividad
-        JButton btnCrearAct = new JButton("Crear Principal.Actividad");
+        JButton btnCrearAct = new JButton("Crear Actividad");
         btnCrearAct.setBounds(100, 100, 160, 30);
         btnCrearAct.setFocusPainted(false);
-        btnCrearAct.setToolTipText("Crear Principal.Actividad");
+        btnCrearAct.setToolTipText("Crear Actividad");
+        btnCrearAct.addActionListener(e -> {
+            new VentanaCrearActividad(club, RutAdmin);
+        });
         panel.add(btnCrearAct);
 
         //boton crear nueva instalacion
-        JButton btnCrearInstalacion = new JButton("Crear Principal.Instalacion");
+        JButton btnCrearInstalacion = new JButton("Crear Instalacion");
         btnCrearInstalacion.setBounds(100, 140, 160, 30);
         btnCrearInstalacion.setFocusPainted(false);
-        btnCrearInstalacion.setToolTipText("Crear Principal.Instalacion");
+        btnCrearInstalacion.setToolTipText("Crear Instalacion");
         panel.add(btnCrearInstalacion);
 
         //boton mostrar Socios
@@ -64,17 +66,17 @@ public class VentanaAdmin extends JFrame {
             int contador = 1;
 
             for (Socio socio : club.getSociosPorRut().values()) {  //--> bucle for-each para recorrer el hashMap de socios
-                info.append("Principal.Socio ").append(contador++).append(": ").append(socio.getNombre()).append(" - Rut: ").append(socio.getRut()).append("\n");
+                info.append("Socio ").append(contador++).append(": ").append(socio.getNombre()).append(" - Rut: ").append(socio.getRut()).append("\n");
             }
             JOptionPane.showMessageDialog(this, info.toString(), "Socios registrados", JOptionPane.INFORMATION_MESSAGE);
         });
         panel.add(btnMostrarSocios);
 
         //boton mostrar actividades
-        JButton btnMostrarActividad = new JButton("Mostrar Principal.Actividad");
+        JButton btnMostrarActividad = new JButton("Mostrar Actividad");
         btnMostrarActividad.setBounds(300, 100, 160, 30);
         btnMostrarActividad.setFocusPainted(false);
-        btnMostrarActividad.setToolTipText("Mostrar Principal.Actividad");
+        btnMostrarActividad.setToolTipText("Mostrar Actividad");
         panel.add(btnMostrarActividad);
 
         //boton mostrar Inslataciones
