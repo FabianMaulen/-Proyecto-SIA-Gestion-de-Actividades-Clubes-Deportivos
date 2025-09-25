@@ -1,6 +1,8 @@
+package Principal;
+import Principal.VentanaCrearActividad;
+
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class VentanaAdmin extends JFrame {
     private Admin admin;
