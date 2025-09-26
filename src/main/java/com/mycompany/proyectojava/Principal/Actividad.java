@@ -39,4 +39,9 @@ public class Actividad {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return "Actividad: " + descripcion + " | Día: " + dia + " | Hora: " + horaInicio + ":00";
+    }
+
 }

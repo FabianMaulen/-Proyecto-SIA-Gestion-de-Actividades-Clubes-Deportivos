@@ -2,6 +2,7 @@ package ArchivosProyecto;
 
 import Principal.*;
 import java.io.*;
+import java.util.*;
 
 public class PersistenciaActividad {
 
@@ -61,6 +62,36 @@ public class PersistenciaActividad {
             }
         } catch (IOException e) {
             System.out.println("Error al cargar actividades: " + e.getMessage());
+        }
+    }
+
+    public static void eliminarActividad(Actividad actividadAEliminar, ClubDeportivo club) {
+        ArrayList<String> lineasFiltradas = new ArrayList<>();
+
+        for (Instalacion inst : club.getInstalaciones()) {
+            bloqueHorario[][] matriz = inst.getPlanificacion();
+            for (int d = 0; d < 7; d++) {
+                for (int h = 0; h < 12; h++) {
+                    Actividad act = matriz[d][h].getInfoActividad();
+                    if (act != null && !act.equals(actividadAEliminar)) {
+                        String linea = inst.getTipo() + "," +
+                                act.getDia() + "," +
+                                act.getHoraInicio() + "," +
+                                act.getHoraFin() + "," +
+                                act.getDescripcion();
+                        lineasFiltradas.add(linea);
+                    }
+                }
+            }
+        }
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA))) {
+            for (String linea : lineasFiltradas) {
+                writer.write(linea);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Error al eliminar actividad: " + e.getMessage());
         }
     }
 }

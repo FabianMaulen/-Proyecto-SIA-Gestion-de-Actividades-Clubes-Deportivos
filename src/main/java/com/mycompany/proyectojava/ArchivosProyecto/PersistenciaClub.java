@@ -18,8 +18,6 @@ public class PersistenciaClub {
             System.out.println("Error al guardar instalaciones: " + e.getMessage());
         }
 
-        // Guardar actividades por separado
-        PersistenciaActividad.guardarActividades(club);
     }
 
     public static void cargarClub(ClubDeportivo club) {

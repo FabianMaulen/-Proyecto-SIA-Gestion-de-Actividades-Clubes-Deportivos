@@ -1,5 +1,5 @@
 package Principal;
-
+import Excepciones.ExcepcionRutInvalido;
 import javax.swing.*;
 
 public class VentanaLogin extends JFrame {
@@ -36,29 +36,29 @@ public class VentanaLogin extends JFrame {
 
         // Acción cuando se hace clic en el botón
         btnLogin.addActionListener(e -> {
-            // Obtener lo que el usuario escribió en las casillas
-            String rutIngresado = txtUsuario.getText();
+            String rutIngresado = txtUsuario.getText().trim();
 
-            // Validar con los datos del administrador
-            if(admin.isAdmin(rutIngresado)) {
-                JOptionPane.showMessageDialog(null, "Bienvenido " + admin.getNombre());
-                new VentanaAdmin(club);
-                dispose();
+            try {
+                // Validación básica de formato
+                if (!rutIngresado.matches("\\d{2}\\.\\d{3}\\.\\d{3}-\\d")) {
+                    throw new ExcepcionRutInvalido("Formato de RUT inválido. Ejemplo: 12.345.678-9");
+                }
 
-            } else if(club.buscarSocioPorRut(rutIngresado) != null) {
-                Socio socio = club.buscarSocioPorRut(rutIngresado);
-                JOptionPane.showMessageDialog(null, "Bienvenido " + socio.getNombre());
-                new VentanaSocio(socio, club);
-                dispose();
+                if (admin.isAdmin(rutIngresado)) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido " + admin.getNombre());
+                    new VentanaAdmin(club);
+                    dispose();
+                } else if (club.buscarSocioPorRut(rutIngresado) != null) {
+                    Socio socio = club.buscarSocioPorRut(rutIngresado);
+                    JOptionPane.showMessageDialog(null, "Bienvenido " + socio.toString());
+                    new VentanaSocio(socio, club);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Usuario Inexistente", "Error de Acceso", JOptionPane.ERROR_MESSAGE);
+                }
 
-            } else {
-                JOptionPane.showMessageDialog(
-                        this,
-                        "Usuario Inexistente ",
-                        "Error de Acceso",
-                        JOptionPane.ERROR_MESSAGE
-                );
-
+            } catch (ExcepcionRutInvalido ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de RUT", JOptionPane.ERROR_MESSAGE);
             }
         });
 

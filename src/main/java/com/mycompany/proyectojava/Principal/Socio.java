@@ -52,4 +52,8 @@ public class Socio {
         this.edad = edad;
         this.Rut = rut;
     }
+    @Override
+    public String toString() {
+        return "Socio: " + Nombre + " | RUT: " + Rut + " | Edad: " + edad  ;
+    }
 }

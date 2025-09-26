@@ -196,6 +196,7 @@ public class VentanaCrearActividad extends JFrame {
             }
 
             PersistenciaActividad.guardarActividades(club);
+            txtAreaInfo.append("\nResumen de la actividad:\n" + a.toString() + "\n");
             txtAreaInfo.append("\n¡ACTIVIDAD CREADA Y ASIGNADA CORRECTAMENTE!\n");
 
             // Limpiar campos
