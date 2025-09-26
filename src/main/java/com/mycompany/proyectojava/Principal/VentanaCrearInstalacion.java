@@ -1,5 +1,5 @@
 package Principal;
-
+import ArchivosProyecto.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -97,6 +97,7 @@ public class VentanaCrearInstalacion extends JFrame {
         instalacion.setDireccion(direccion);
 
         club.agregarInstalacion(instalacion);
+        PersistenciaClub.guardarClub(club);
 
         txtAreaInfo.append("✓ Instalacion creada con exito!: \n");
         txtAreaInfo.append("   - Tipo: " + tipo + "\n");

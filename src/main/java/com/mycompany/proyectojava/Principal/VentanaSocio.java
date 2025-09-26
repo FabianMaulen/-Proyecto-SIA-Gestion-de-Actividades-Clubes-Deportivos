@@ -23,7 +23,7 @@ public class VentanaSocio extends JFrame {
         panel.setLayout(null);
 
         //etiqueta Principal.Socio
-        JLabel lblSocio = new JLabel("Principal.Socio: " + socio.getNombre());
+        JLabel lblSocio = new JLabel("Socio: " + socio.getNombre());
         lblSocio.setBounds(100, 20, 300, 30);
         lblSocio.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(lblSocio);
@@ -37,24 +37,24 @@ public class VentanaSocio extends JFrame {
         //funcionalidades del Principal.Socio
 
         //boton crear Principal.Actividad
-        JButton btnCrearAct = new JButton("Crear Principal.Actividad");
+        JButton btnCrearAct = new JButton("Crear Actividad");
         btnCrearAct.setBounds(100, 100, 160, 30);
         btnCrearAct.setFocusPainted(false);
-        btnCrearAct.setToolTipText("Crear Principal.Actividad");
+        btnCrearAct.setToolTipText("Crear Actividad");
         panel.add(btnCrearAct);
 
         //boton Inscribirse a una actividad
-        JButton btnInscribirseAct = new JButton("Inscribirse a una Principal.Actividad");
+        JButton btnInscribirseAct = new JButton("Inscribirse a una Actividad");
         btnInscribirseAct.setBounds(100, 140, 160, 30);
         btnInscribirseAct.setFocusPainted(false);
-        btnInscribirseAct.setToolTipText("Inscribirse a una Principal.Actividad");
+        btnInscribirseAct.setToolTipText("Inscribirse a una Actividad");
         panel.add(btnInscribirseAct);
 
         //boton Mostrar Principal.Actividad
-        JButton btnMostrarAct = new JButton("Mostrar Principal.Actividad");
+        JButton btnMostrarAct = new JButton("Mostrar Actividad");
         btnMostrarAct.setBounds(100, 180, 160, 30);
         btnMostrarAct.setFocusPainted(false);
-        btnMostrarAct.setToolTipText("Mostrar Principal.Actividad");
+        btnMostrarAct.setToolTipText("Mostrar Actividad");
         panel.add(btnMostrarAct);
 
         //boton Mostrar Instalaciones
