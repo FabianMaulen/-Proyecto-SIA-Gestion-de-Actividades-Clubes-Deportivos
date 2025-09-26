@@ -5,7 +5,6 @@ import java.awt.*;
 
 public class VentanaCrearActividad extends JFrame {
     private ClubDeportivo club;
-    private String RutAdmin;
 
     private JTextField txtDescripcion;
     private JTextField txtDia;
@@ -13,9 +12,8 @@ public class VentanaCrearActividad extends JFrame {
     private JTextField txtHoraFin;
     private JTextArea txtAreaInfo;
 
-    public VentanaCrearActividad(ClubDeportivo club, String RutAdmin) {
+    public VentanaCrearActividad(ClubDeportivo club) {
         this.club = club;
-        this.RutAdmin = RutAdmin;
 
         setTitle("Crear Actividad");
         setSize(500, 600);

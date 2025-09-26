@@ -42,7 +42,7 @@ public class VentanaAdmin extends JFrame {
         btnCrearAct.setFocusPainted(false);
         btnCrearAct.setToolTipText("Crear Actividad");
         btnCrearAct.addActionListener(e -> {
-            new VentanaCrearActividad(club, RutAdmin);
+            new VentanaCrearActividad(club);
         });
         panel.add(btnCrearAct);
 
@@ -51,6 +51,9 @@ public class VentanaAdmin extends JFrame {
         btnCrearInstalacion.setBounds(100, 140, 160, 30);
         btnCrearInstalacion.setFocusPainted(false);
         btnCrearInstalacion.setToolTipText("Crear Instalacion");
+        btnCrearInstalacion.addActionListener(e -> {
+            new VentanaCrearInstalacion(club);
+        });
         panel.add(btnCrearInstalacion);
 
         //boton mostrar Socios
