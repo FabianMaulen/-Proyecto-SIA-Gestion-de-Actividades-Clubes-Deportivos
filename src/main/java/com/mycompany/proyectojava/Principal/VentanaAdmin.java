@@ -82,6 +82,35 @@ public class VentanaAdmin extends JFrame {
         btnMostrarActividad.setBounds(300, 100, 160, 30);
         btnMostrarActividad.setFocusPainted(false);
         btnMostrarActividad.setToolTipText("Mostrar Actividad");
+        btnMostrarActividad.addActionListener(e -> {
+            StringBuilder info = new StringBuilder();
+            int contador = 1;
+
+            for(Instalacion inst : club.getInstalaciones()) {
+                bloqueHorario[][] planificacion =  inst.getPlanificacion();
+
+                for(int dia = 0 ; dia < planificacion.length ; dia++) {
+                    for(int hora = 0 ; hora < planificacion[0].length ; hora++) {
+                        bloqueHorario bloque = planificacion[dia][hora];
+                        Actividad act = bloque.getInfoActividad();
+
+                        if(act != null && hora == act.getHoraInicio() - 8) {
+                            info.append("Actividad ").append(contador++).append(":\n");
+                            info.append("   - Instalación: ").append(inst.getTipo()).append("\n");
+                            info.append("   - Día: ").append(act.getDia()).append("\n");
+                            info.append("   - Horario: ").append(act.getHoraInicio()).append(":00 a ").append(act.getHoraFin()).append(":00\n");
+                            info.append("   - Descripción: ").append(act.getDescripcion()).append("\n\n");
+                        }
+                    }
+                }
+            }
+
+            if(info.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay actividades registradas.");
+            } else {
+                JOptionPane.showMessageDialog(this, info.toString(), "Actividades registradas", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         panel.add(btnMostrarActividad);
 
         //boton mostrar Inslataciones
