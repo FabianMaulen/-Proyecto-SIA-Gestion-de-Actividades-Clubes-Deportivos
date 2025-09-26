@@ -425,4 +425,7 @@ public class ClubDeportivo {
         System.out.println("Cupos disponibles: " + cuposRestantes + " / " + inst.getCapacidad());
     }
 
+    public void setInstalaciones(ArrayList<Instalacion> instalaciones) {
+        this.instalaciones = instalaciones;
+    }
 }

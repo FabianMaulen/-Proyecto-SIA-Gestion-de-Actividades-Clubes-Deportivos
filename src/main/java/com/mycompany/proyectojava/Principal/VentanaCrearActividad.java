@@ -1,5 +1,5 @@
 package Principal;
-
+import ArchivosProyecto.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -195,6 +195,7 @@ public class VentanaCrearActividad extends JFrame {
                         ", Hora " + h + ":00 → " + descripcion + "\n");
             }
 
+            PersistenciaActividad.guardarActividades(club);
             txtAreaInfo.append("\n¡ACTIVIDAD CREADA Y ASIGNADA CORRECTAMENTE!\n");
 
             // Limpiar campos
