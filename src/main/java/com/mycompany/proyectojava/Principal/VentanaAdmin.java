@@ -1,4 +1,5 @@
 package Principal;
+import ArchivosProyecto.Reporte;
 import Principal.VentanaCrearActividad;
 
 import javax.swing.*;
@@ -132,6 +133,35 @@ public class VentanaAdmin extends JFrame {
             JOptionPane.showMessageDialog(this, info.toString(), "Instalaciones", JOptionPane.INFORMATION_MESSAGE);
         });
         panel.add(btnMostrarInstalaciones);
+
+        JButton btnGenerarReporte = new JButton("Generar Reporte del Club");
+        btnGenerarReporte.setBounds(300, 180, 200, 30); // Puedes ajustar posición y tamaño
+        btnGenerarReporte.setFocusPainted(false);
+        btnGenerarReporte.setToolTipText("Generar archivo con todos los datos del sistema");
+
+        btnGenerarReporte.addActionListener(e -> {
+            String ruta = "src/main/java/com/mycompany/proyectojava/ArchivosProyecto/ReporteClub.txt";
+
+            try {
+                Reporte.generarReporteClub(club, ruta);
+                JOptionPane.showMessageDialog(this,
+                        "Reporte generado correctamente.\nArchivo: " + ruta,
+                        "Reporte del Club",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Error al generar el reporte:\n" + ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+        panel.add(btnGenerarReporte); // Agregado al panel correctamente
+
+
+
+
+
 
         //boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar  sesion");

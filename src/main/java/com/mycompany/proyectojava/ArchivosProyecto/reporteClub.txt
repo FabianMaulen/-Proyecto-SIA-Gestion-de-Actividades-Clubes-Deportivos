@@ -1,0 +1,25 @@
+===== REPORTE DEL CLUB DEPORTIVO =====
+Fecha de generación: 2025-09-26T21:28:50.557852100
+
+ADMINISTRADOR:
+Nombre: Fabian
+RUT: 11.111.111-1
+Correo: admin@club.cl
+
+SOCIOS REGISTRADOS:
+  - Socio: Fabian Maulen | RUT: 21.957.957-8 | Edad: 20
+  Total: 1 socios
+
+INSTALACIONES:
+  - Cancha en Av. Deportiva 123 (Capacidad: 20)
+  - Piscina en Calle Acuática 456 (Capacidad: 15)
+  - Gimnasio gei de mario en Avenida mama del mario 123 (Capacidad: 10)
+  Total: 3 instalaciones
+
+ACTIVIDADES:
+  - Actividad: Fútbol amistoso | Día: 2 | Hora: 10:00 | Instalación: Cancha
+  - Actividad: ola | Día: 4 | Hora: 8:00 | Instalación: Cancha
+  - Actividad: pichula | Día: 3 | Hora: 9:00 | Instalación: Piscina
+  - Actividad: Futbol acuatico | Día: 3 | Hora: 10:00 | Instalación: Piscina
+
+===== FIN DEL REPORTE =====
