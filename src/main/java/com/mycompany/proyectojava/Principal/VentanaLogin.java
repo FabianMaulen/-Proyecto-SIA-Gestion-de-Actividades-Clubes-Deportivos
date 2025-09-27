@@ -32,7 +32,8 @@ public class VentanaLogin extends JFrame {
 
         // Botón "Ingresar"
         JButton btnLogin = new JButton("Ingresar");
-        btnLogin.setBounds(100,70,100,30); // Ubicación y tamaño
+        btnLogin.setBounds(35,70,100,30);// Ubicación y tamaño
+        btnLogin.setFocusPainted(false);
 
         // Acción cuando se hace clic en el botón
         btnLogin.addActionListener(e -> {
@@ -50,7 +51,7 @@ public class VentanaLogin extends JFrame {
                     dispose();
                 } else if (club.buscarSocioPorRut(rutIngresado) != null) {
                     Socio socio = club.buscarSocioPorRut(rutIngresado);
-                    JOptionPane.showMessageDialog(null, "Bienvenido " + socio.toString());
+                    JOptionPane.showMessageDialog(null, "Bienvenido " + socio.getNombre());
                     new VentanaSocio(socio, club);
                     dispose();
                 } else {
@@ -61,9 +62,18 @@ public class VentanaLogin extends JFrame {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de RUT", JOptionPane.ERROR_MESSAGE);
             }
         });
-
         // Agregar el botón al panel
         panel.add(btnLogin);
+
+        //boton registrar Usuario
+        JButton btnRegistrar = new JButton("Registrar Socio");
+        btnRegistrar.setBounds(150,70,100,30);
+        btnRegistrar.setFocusPainted(false);
+        btnRegistrar.setToolTipText("Registrar Socio");
+        btnRegistrar.addActionListener(e -> {
+            new VentanaRegistrarSocio(club);
+        });
+        panel.add(btnRegistrar);
 
         // Agregar el panel a la ventana
         add(panel);

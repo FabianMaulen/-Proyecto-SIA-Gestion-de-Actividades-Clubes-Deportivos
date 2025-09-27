@@ -36,11 +36,14 @@ public class VentanaSocio extends JFrame {
 
         //funcionalidades del Principal.Socio
 
-        //boton crear Principal.Actividad
+        //boton crear Actividad
         JButton btnCrearAct = new JButton("Crear Actividad");
         btnCrearAct.setBounds(100, 100, 160, 30);
         btnCrearAct.setFocusPainted(false);
         btnCrearAct.setToolTipText("Crear Actividad");
+        btnCrearAct.addActionListener(e -> {
+            new VentanaCrearActividad(club);
+        });
         panel.add(btnCrearAct);
 
         //boton Inscribirse a una actividad
@@ -50,11 +53,63 @@ public class VentanaSocio extends JFrame {
         btnInscribirseAct.setToolTipText("Inscribirse a una Actividad");
         panel.add(btnInscribirseAct);
 
-        //boton Mostrar Principal.Actividad
+        //boton Mostrar Actividad
         JButton btnMostrarAct = new JButton("Mostrar Actividad");
         btnMostrarAct.setBounds(100, 180, 160, 30);
         btnMostrarAct.setFocusPainted(false);
         btnMostrarAct.setToolTipText("Mostrar Actividad");
+        btnMostrarAct.addActionListener(e -> {
+            StringBuilder info = new StringBuilder();
+            int contador = 1;
+
+            for(Instalacion inst : club.getInstalaciones()) {
+                bloqueHorario[][] planificacion =  inst.getPlanificacion();
+
+                for(int dia = 0 ; dia < planificacion.length ; dia++) {
+                    for(int hora = 0 ; hora < planificacion[0].length ; hora++) {
+                        bloqueHorario bloque = planificacion[dia][hora];
+                        Actividad act = bloque.getInfoActividad();
+
+                        if(act != null && hora == act.getHoraInicio() - 8) {
+                            info.append("Actividad ").append(contador++).append(":\n");
+                            info.append("   - Instalación: ").append(inst.getTipo()).append("\n");
+                            int diaAct = act.getDia();
+                            switch(diaAct) {
+                                case 1:
+                                    info.append("   - Dia: Lunes").append("\n");
+                                    break;
+                                case 2:
+                                    info.append("   - Dia: Martes").append("\n");
+                                    break;
+                                case 3:
+                                    info.append("   - Dia: Miercoles").append("\n");
+                                    break;
+                                case 4:
+                                    info.append("   - Dia: Jueves").append("\n");
+                                    break;
+                                case 5:
+                                    info.append("   - Dia: Viernes").append("\n");
+                                    break;
+                                case 6:
+                                    info.append("   - Dia: Sabado").append("\n");
+                                    break;
+                                case 7:
+                                    info.append("   - Dia: Domingo").append("\n");
+                                    break;
+                            }
+                            info.append("   - Horario: ").append(act.getHoraInicio()).append(":00 a ").append(act.getHoraFin()).append(":00\n");
+                            info.append("   - Descripción: ").append(act.getDescripcion()).append("\n\n");
+                        }
+                    }
+                }
+            }
+
+            if(info.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay actividades registradas.");
+            } else {
+                JOptionPane.showMessageDialog(this, info.toString(), "Actividades registradas", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         panel.add(btnMostrarAct);
 
         //boton Mostrar Instalaciones

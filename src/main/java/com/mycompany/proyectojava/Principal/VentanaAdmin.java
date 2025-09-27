@@ -97,8 +97,31 @@ public class VentanaAdmin extends JFrame {
 
                         if(act != null && hora == act.getHoraInicio() - 8) {
                             info.append("Actividad ").append(contador++).append(":\n");
-                            info.append("   - Instalación: ").append(inst.getTipo()).append("\n");
-                            info.append("   - Día: ").append(act.getDia()).append("\n");
+                            info.append("   - Instalación: ").append(inst.getTipo()).append("\n");int diaAct = act.getDia();
+                            int diaActividad = act.getDia();
+                            switch(diaActividad) {
+                                case 1:
+                                    info.append("   - Dia: Lunes").append("\n");
+                                    break;
+                                case 2:
+                                    info.append("   - Dia: Martes").append("\n");
+                                    break;
+                                case 3:
+                                    info.append("   - Dia: Miercoles").append("\n");
+                                    break;
+                                case 4:
+                                    info.append("   - Dia: Jueves").append("\n");
+                                    break;
+                                case 5:
+                                    info.append("   - Dia: Viernes").append("\n");
+                                    break;
+                                case 6:
+                                    info.append("   - Dia: Sabado").append("\n");
+                                    break;
+                                case 7:
+                                    info.append("   - Dia: Domingo").append("\n");
+                                    break;
+                            }
                             info.append("   - Horario: ").append(act.getHoraInicio()).append(":00 a ").append(act.getHoraFin()).append(":00\n");
                             info.append("   - Descripción: ").append(act.getDescripcion()).append("\n\n");
                         }
@@ -134,10 +157,11 @@ public class VentanaAdmin extends JFrame {
         });
         panel.add(btnMostrarInstalaciones);
 
+        //boton generar reporte
         JButton btnGenerarReporte = new JButton("Generar Reporte del Club");
-        btnGenerarReporte.setBounds(300, 180, 200, 30); // Puedes ajustar posición y tamaño
+        btnGenerarReporte.setBounds(300, 180, 160, 30); // Puedes ajustar posición y tamaño
         btnGenerarReporte.setFocusPainted(false);
-        btnGenerarReporte.setToolTipText("Generar archivo con todos los datos del sistema");
+        btnGenerarReporte.setToolTipText("Generar Reporte del Club");
 
         btnGenerarReporte.addActionListener(e -> {
             String ruta = "src/main/java/com/mycompany/proyectojava/ArchivosProyecto/ReporteClub.txt";
@@ -155,13 +179,7 @@ public class VentanaAdmin extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         });
-
-        panel.add(btnGenerarReporte); // Agregado al panel correctamente
-
-
-
-
-
+        panel.add(btnGenerarReporte);
 
         //boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar  sesion");

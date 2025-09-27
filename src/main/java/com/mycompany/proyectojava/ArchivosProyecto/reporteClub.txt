@@ -1,5 +1,5 @@
 ===== REPORTE DEL CLUB DEPORTIVO =====
-Fecha de generación: 2025-09-26T21:28:50.557852100
+Fecha de generación: 2025-09-27T11:53:11.692610400
 
 ADMINISTRADOR:
 Nombre: Fabian

@@ -20,7 +20,7 @@ public class MenuClub {
             System.out.println("2. Mostrar Instalaciones");
             System.out.println("3. Crear Nueva Principal.Instalacion");
             System.out.println("4. MostrarActividad");
-            System.out.println("5. Mostrar Principal.Socio");
+            System.out.println("5. Mostrar Socio");
             System.out.println("0. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
 
@@ -33,7 +33,7 @@ public class MenuClub {
 
                 case "1":
                     if (club.agregarActividadDisponible(rut)) {
-                        System.out.println(" Principal.Actividad creada y asignada correctamente.");
+                        System.out.println(" Actividad creada y asignada correctamente.");
                     } else {
                         System.out.println("️ No se pudo completar el proceso.");
                     }
