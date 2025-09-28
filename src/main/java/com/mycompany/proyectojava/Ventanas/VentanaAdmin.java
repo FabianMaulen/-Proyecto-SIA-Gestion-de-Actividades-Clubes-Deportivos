@@ -5,6 +5,7 @@ import Principal.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class VentanaAdmin extends JFrame {
     private Admin admin;
@@ -209,6 +210,53 @@ public class VentanaAdmin extends JFrame {
             JOptionPane.showMessageDialog(this, " Socio eliminado correctamente.");
 
                 });
+
+        // Boton modificar Socio
+
+        JButton btnModificarSocio = new JButton("Modificar Socio");
+        btnModificarSocio.setBounds(500, 140, 160, 30);
+        btnModificarSocio.setToolTipText("Modificar datos de un socio por RUT");
+        panel.add(btnModificarSocio);
+
+        btnModificarSocio.addActionListener(e -> {
+            String rut = JOptionPane.showInputDialog(this, "Ingrese el RUT del socio a modificar:");
+
+            if (rut == null || rut.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, " Debes ingresar un RUT válido.");
+                return;
+            }
+
+            Socio socio = club.getSociosPorRut().get(rut);
+
+            if (socio == null) {
+                JOptionPane.showMessageDialog(this, " No se encontro un socio con ese RUT.");
+                return;
+            }
+
+            JTextField txtNombre = new JTextField(socio.getNombre());
+            JTextField txtCorreo = new JTextField(socio.getEmail());
+            JTextField txtEdad = new JTextField(socio.getEdad());
+
+            JPanel panelMod = new JPanel(new GridLayout(0, 1));
+            panelMod.add(new JLabel("Nombre:"));
+            panelMod.add(txtNombre);
+            panelMod.add(new JLabel("Correo:"));
+            panelMod.add(txtCorreo);
+            panelMod.add(new JLabel("Edad:"));
+            panelMod.add(txtEdad);
+
+            int result = JOptionPane.showConfirmDialog(this, panelMod, "Modificar Socio", JOptionPane.OK_CANCEL_OPTION);
+
+            if (result == JOptionPane.OK_OPTION) {
+                socio.setNombre(txtNombre.getText().trim());
+                socio.setEmail(txtCorreo.getText().trim());
+                socio.setEdad(txtEdad.getText().trim());
+
+                PersistenciaSocio.guardarTodos(new ArrayList<>(club.getSociosPorRut().values()));
+                JOptionPane.showMessageDialog(this, "Socio modificado correctamente.");
+            }
+        });
+
 
         //boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar  sesion");

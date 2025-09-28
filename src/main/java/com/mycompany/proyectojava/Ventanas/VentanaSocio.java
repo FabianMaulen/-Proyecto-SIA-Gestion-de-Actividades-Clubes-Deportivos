@@ -1,8 +1,10 @@
 package Ventanas;
 
+import ArchivosProyecto.PersistenciaSocio;
 import Principal.*;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class VentanaSocio extends JFrame {
     private ClubDeportivo club;
@@ -35,7 +37,43 @@ public class VentanaSocio extends JFrame {
         panel.add(lblRutAdmin);
 
 
-        //funcionalidades del Principal.Socio
+        //funcionalidades del Socio
+
+        //Boton Modificar Datos
+        JButton btnModificarDatos = new JButton("Modificar Mis Datos");
+        btnModificarDatos.setBounds(300, 180, 180, 30);
+        btnModificarDatos.setToolTipText("Editar nombre, correo y edad");
+        panel.add(btnModificarDatos);
+
+
+        btnModificarDatos.addActionListener(e -> {
+            JTextField txtNombre = new JTextField(socio.getNombre());
+            JTextField txtCorreo = new JTextField(socio.getEmail());
+            JTextField txtEdad = new JTextField(socio.getEdad());
+
+            JPanel panelMod = new JPanel(new GridLayout(0, 1));
+            panelMod.add(new JLabel("Nombre:"));
+            panelMod.add(txtNombre);
+            panelMod.add(new JLabel("Correo:"));
+            panelMod.add(txtCorreo);
+            panelMod.add(new JLabel("Edad:"));
+            panelMod.add(txtEdad);
+
+            int result = JOptionPane.showConfirmDialog(this, panelMod, "Modificar Mis Datos", JOptionPane.OK_CANCEL_OPTION);
+
+            if (result == JOptionPane.OK_OPTION) {
+                socio.setNombre(txtNombre.getText().trim());
+                socio.setEmail(txtCorreo.getText().trim());
+                socio.setEdad(txtEdad.getText().trim());
+
+                club.getSociosPorRut().put(socio.getRut(), socio);
+                PersistenciaSocio.guardarTodos(new ArrayList<>(club.getSociosPorRut().values()));
+
+                JOptionPane.showMessageDialog(this, " Tus datos fueron modificados correctamente.");
+            }
+        });
+
+
 
         //boton crear Actividad
         JButton btnCrearAct = new JButton("Crear Actividad");
@@ -139,6 +177,7 @@ public class VentanaSocio extends JFrame {
         btnBloqueHorario.setFocusPainted(false);
         btnBloqueHorario.setToolTipText("informacion de bloque horario");
         panel.add(btnBloqueHorario);
+
 
         //boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar  sesion");
