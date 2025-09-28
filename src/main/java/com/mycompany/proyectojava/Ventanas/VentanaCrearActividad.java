@@ -21,7 +21,7 @@ public class VentanaCrearActividad extends JFrame {
         this.club = club;
 
         setTitle("Crear Actividad");
-        setSize(500, 600);
+        setSize(500, 645);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -92,25 +92,20 @@ public class VentanaCrearActividad extends JFrame {
         scrollInfo.setBounds(50, 430, 380, 90);
         panel.add(scrollInfo);
 
-        //Boton cargar Instalaciones
-        JButton btnCargarInstalaciones = new JButton("Cargar Instalaciones");
-        btnCargarInstalaciones.setBounds(50,530,150,30);
-        btnCargarInstalaciones.addActionListener(e -> cargarInstalaciones(cboInstalaciones));
-        panel.add(btnCargarInstalaciones);
-
         //boton crear Actividad
         JButton btnCrearActividad = new JButton("Crear Actividad");
-        btnCrearActividad.setBounds(220,530,130,30);
+        btnCrearActividad.setBounds(50,530,130,30);
         btnCrearActividad.addActionListener(e -> crearActividad(cboInstalaciones));
         panel.add(btnCrearActividad);
 
         //boton cerrar
         JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.setBounds(370,530,80,30);
+        btnCerrar.setBounds(220,530,80,30);
         btnCerrar.addActionListener(e -> dispose());
         panel.add(btnCerrar);
 
         add(panel);
+        cargarInstalaciones(cboInstalaciones);
         setVisible(true);
     }
 
