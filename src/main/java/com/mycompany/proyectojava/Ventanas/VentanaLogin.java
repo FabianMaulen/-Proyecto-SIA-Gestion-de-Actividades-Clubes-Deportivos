@@ -1,5 +1,7 @@
-package Principal;
+package Ventanas;
 import Excepciones.ExcepcionRutInvalido;
+import Principal.*;
+
 import javax.swing.*;
 
 public class VentanaLogin extends JFrame {

@@ -43,6 +43,8 @@ public class Instalacion {
 
     //Dia es entero del 1 al 7 que sera convertido en base a strings. ej Lunes = 1.
     public boolean estaDisponible(int dia, int horaInicio, int horaFinal){
+        if(dia >7  || dia <1 ||  horaInicio<8 || horaFinal > 20) return false;
+
         int inicio = horaInicio - 8;
         int fin = horaFinal - 8;
 

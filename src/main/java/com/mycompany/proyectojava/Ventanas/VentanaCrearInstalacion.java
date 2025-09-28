@@ -1,5 +1,8 @@
-package Principal;
+package Ventanas;
 import ArchivosProyecto.*;
+import Principal.ClubDeportivo;
+import Principal.Instalacion;
+
 import javax.swing.*;
 import java.awt.*;
 
