@@ -5,7 +5,6 @@ import java.util.List;
 
 public class bloqueHorario {
 
-
     private boolean disponibilidad = true;
     private ArrayList<Socio> sociosAsistentes;
     private Actividad infoActividad;

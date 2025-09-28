@@ -6,63 +6,76 @@ import java.util.*;
 public class ClubDeportivo {
 
 
-        private HashMap<String,Socio> sociosPorRut;
-        private Admin administrador;
-        private ArrayList<Instalacion> instalaciones;
+    private HashMap<String, Socio> sociosPorRut;
+    private Admin administrador;
+    private ArrayList<Instalacion> instalaciones;
 
 
+    public void eliminarSocioActividades(ClubDeportivo club, Socio s) {
+        for (Instalacion instalacion : club.getInstalaciones()) {
+            bloqueHorario[][] planificacion = instalacion.getPlanificacion();
 
-        public ClubDeportivo() {
-            this.administrador = new Admin("Fabian", "admin@club.cl", "11.111.111-1");
-            this.sociosPorRut = new HashMap<String,Socio>();
-            this.instalaciones = new ArrayList<Instalacion>();
-
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 12; j++) {
+                    planificacion[i][j].getSociosAsistentes().removeIf(socio -> socio.equals(s));
+                }
+            }
         }
+    }
 
-        public Admin getAdministrador() {
-            return administrador;
-        }
 
-        public ArrayList<Instalacion> getInstalaciones() {
-            return instalaciones;
-        }
 
-        public HashMap<String, Socio> getSociosPorRut() {
+    public ClubDeportivo() {
+        this.administrador = new Admin("Fabian", "admin@club.cl", "11.111.111-1");
+        this.sociosPorRut = new HashMap<String, Socio>();
+        this.instalaciones = new ArrayList<Instalacion>();
+
+    }
+
+    public Admin getAdministrador() {
+        return administrador;
+    }
+
+    public ArrayList<Instalacion> getInstalaciones() {
+        return instalaciones;
+    }
+
+    public HashMap<String, Socio> getSociosPorRut() {
         return sociosPorRut;
     }
 
-        //Función para crear socio que posteriormente se agregara a nuestro arraylist
-        public Socio crearSocio(){
+    //Función para crear socio que posteriormente se agregara a nuestro arraylist
+    public Socio crearSocio() {
 
-            Scanner sc = new Scanner(System.in);
-            Socio s = new Socio();
+        Scanner sc = new Scanner(System.in);
+        Socio s = new Socio();
 
-            System.out.print("Ingresa tu nombre: ");
-            s.setNombre(sc.nextLine());
+        System.out.print("Ingresa tu nombre: ");
+        s.setNombre(sc.nextLine());
 
-            System.out.print("Ingresa tu rut: ");
-            s.setRut(sc.nextLine());
+        System.out.print("Ingresa tu rut: ");
+        s.setRut(sc.nextLine());
 
-            System.out.print("Ingresa tu edad: ");
-            s.setEdad(sc.nextLine());
+        System.out.print("Ingresa tu edad: ");
+        s.setEdad(sc.nextLine());
 
-            System.out.print("Ingresa tu email: ");
-            s.setEmail(sc.nextLine());
+        System.out.print("Ingresa tu email: ");
+        s.setEmail(sc.nextLine());
 
-            System.out.print("Ingresa tu número celular: ");
-            s.setNroCelular(sc.nextLine());
+        //System.out.print("Ingresa tu número celular: ");
+        //s.setNroCelular(sc.nextLine());
 
-            return s;
+        return s;
+    }
+
+    public boolean agregarSocio(Socio s) {
+
+        if (sociosPorRut.containsKey(s.getRut())) {
+            return false;
         }
-
-        public boolean agregarSocio(Socio s){
-
-            if (sociosPorRut.containsKey(s.getRut())){
-                return false;
-            }
-            sociosPorRut.put(s.getRut(),s);
-            return true;
-        }
+        sociosPorRut.put(s.getRut(), s);
+        return true;
+    }
 
     public boolean agregarSocio(String nombre, String edad, String rut) {
         Socio nuevo = new Socio(nombre, edad, rut);
@@ -84,38 +97,36 @@ public class ClubDeportivo {
         return agregarSocio(nombre, edad, rut);
     }
 
-
     public Socio buscarSocioPorRut(String rut) {
-            return sociosPorRut.get(rut);
+        return sociosPorRut.get(rut);
 
+    }
+
+    public Instalacion crearInstalacion() {
+        Scanner sc = new Scanner(System.in);
+        Instalacion i = new Instalacion();
+
+        System.out.print("Ingresa tipo de instalacion: ");
+        i.setTipo(sc.nextLine());
+        System.out.print("Ingresa capacidad de nueva instalacion: ");
+        i.setCapacidad(Integer.parseInt(sc.nextLine()));
+        System.out.print("Ingresa la Direccion de la instalaciom ");
+        i.setDireccion(sc.nextLine());
+
+
+        return i;
+
+    }
+
+    //Funcion para agregar una instalacion a mi arraylist
+    public boolean agregarInstalacion(Instalacion i) {
+        if (instalaciones.contains(i)) {
+            return false;
         }
+        instalaciones.add(i);
+        return true;
+    }
 
-        public Instalacion crearInstalacion(){
-            Scanner sc = new Scanner(System.in);
-            Instalacion i = new Instalacion();
-
-            System.out.print("Ingresa tipo de instalacion: ");
-            i.setTipo(sc.nextLine());
-            System.out.print("Ingresa capacidad de nueva instalacion: ");
-            i.setCapacidad(Integer.parseInt(sc.nextLine()));
-            System.out.print("Ingresa la Direccion de la instalaciom ");
-            i.setDireccion(sc.nextLine());
-
-
-            return i;
-
-        }
-
-
-
-        //Funcion para agregar una instalacion a mi arraylist
-        public boolean agregarInstalacion(Instalacion i){
-            if (instalaciones.contains(i)){
-                return false;
-            }
-            instalaciones.add(i);
-            return true;
-        }
     public Instalacion buscarInstalacionPorTipo(String tipo) {
         for (Instalacion i : instalaciones) {
             if (i.getTipo().equalsIgnoreCase(tipo)) {
@@ -125,9 +136,7 @@ public class ClubDeportivo {
         return null;
     }
 
-
-
-        public void mostrarInstalaciones() {
+    public void mostrarInstalaciones() {
         int contador = 1;
         for (Instalacion i : instalaciones) {
             System.out.println("Instalación " + contador + " : "
@@ -135,7 +144,6 @@ public class ClubDeportivo {
             contador++;
         }
     }
-
 
     public Actividad crearActividadDesdeConsola(String rut) {
         Scanner sc = new Scanner(System.in);
@@ -188,7 +196,7 @@ public class ClubDeportivo {
         return a;
     }
 
-    public boolean  agregarActividadDisponible(String rut) {
+    public boolean agregarActividadDisponible(String rut) {
         Actividad a = crearActividadDesdeConsola(rut); // ← se crea dentro del metodo
 
         if (a == null) {
@@ -272,8 +280,6 @@ public class ClubDeportivo {
         return true;
     }
 
-
-
     public Boolean agregarSocioActividad(Socio socio, Instalacion ins, int dia, int hora) {
         if (ins == null || socio == null || dia < 1 || dia > 7 || hora < 8 || hora > 19) {
             return false;
@@ -288,7 +294,6 @@ public class ClubDeportivo {
         bloque.getSociosAsistentes().add(socio);
         return true;
     }
-
 
     public void inscribirSocioEnActividadDesdeMenu() {
         Scanner sc = new Scanner(System.in);
@@ -307,7 +312,7 @@ public class ClubDeportivo {
         System.out.print("Seleccione instalacion por indice: ");
         int numero = sc.nextInt();
         sc.nextLine();
-        int index = numero - 1 ;
+        int index = numero - 1;
 
 
         if (index < 0 || index >= instalaciones.size()) {
@@ -325,7 +330,6 @@ public class ClubDeportivo {
 
         boolean exito = agregarSocioActividad(socio, inst, dia, hora);
 
-
         if (exito) {
             System.out.println("Principal.Socio " + socio.getNombre() + " inscrito en actividad: " +
                     inst.getPlanificacion()[dia - 1][hora - 8].getInfoActividad().getDescripcion() +
@@ -335,7 +339,7 @@ public class ClubDeportivo {
         }
     }
 
-    public void mostrarActividadDia( Instalacion ins) {
+    public void mostrarActividadDia(Instalacion ins) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese el día (1 a 7): ");
         int dia = sc.nextInt();
@@ -358,7 +362,6 @@ public class ClubDeportivo {
         }
     }
 
-
     public void mostrarSocio(HashMap<String, Socio> sociosPorRut) {
         Scanner sc = new Scanner(System.in);
 
@@ -376,7 +379,7 @@ public class ClubDeportivo {
                     socio.getRut(),
                     socio.getNombre(),
                     socio.getEdad(),
-                    socio.getNroCelular(),
+                    //socio.getNroCelular(),
                     socio.getEmail());
         } else {
 
@@ -384,8 +387,6 @@ public class ClubDeportivo {
             System.out.println("No se encontro ningun socio con el RUT: " + rut);
         }
     }
-
-
 
     public void mostrarBloqueHorarioDesdeConsola() {
         Scanner sc = new Scanner(System.in);

@@ -9,14 +9,14 @@ public class Reporte {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
 
             writer.write("===== REPORTE DEL CLUB DEPORTIVO =====\n");
-            writer.write("Fecha de generación: " + java.time.LocalDateTime.now() + "\n\n");
+            writer.write("Fecha de generación: " + java.time.LocalDate.now() + "\n\n");
 
             // --- Administrador ---
             writer.write("ADMINISTRADOR:\n");
             Admin admin = club.getAdministrador();
             writer.write("Nombre: " + admin.getNombre() + "\n");
             writer.write("RUT: " + admin.getRut() + "\n");
-            writer.write("Correo: " + admin.getCorreo() + "\n\n");
+            writer.write("Correo: " + admin.getEmail() + "\n\n");
 
             // --- Socios ---
             writer.write("SOCIOS REGISTRADOS:\n");

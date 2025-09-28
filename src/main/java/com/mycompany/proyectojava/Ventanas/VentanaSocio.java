@@ -100,16 +100,33 @@ public class VentanaSocio extends JFrame {
 
                         if (act != null && hora == act.getHoraInicio() - 8) {
                             actividadesDisponibles.add(act);
-                            String nombreDia = switch (act.getDia()) {
-                                case 1 -> "Lunes";
-                                case 2 -> "Martes";
-                                case 3 -> "Miércoles";
-                                case 4 -> "Jueves";
-                                case 5 -> "Viernes";
-                                case 6 -> "Sábado";
-                                case 7 -> "Domingo";
-                                default -> "Desconocido";
-                            };
+                            String nombreDia;
+                            switch (act.getDia()) {
+                                case 1:
+                                    nombreDia = "Lunes";
+                                    break;
+                                case 2:
+                                    nombreDia = "Martes";
+                                    break;
+                                case 3:
+                                    nombreDia = "Miércoles";
+                                    break;
+                                case 4:
+                                    nombreDia = "Jueves";
+                                    break;
+                                case 5:
+                                    nombreDia = "Viernes";
+                                    break;
+                                case 6:
+                                    nombreDia = "Sábado";
+                                    break;
+                                case 7:
+                                    nombreDia = "Domingo";
+                                    break;
+                                default:
+                                    nombreDia = "Desconocido";
+                                    break;
+                            }
                             opciones.add("[" + inst.getTipo() + "] " + act.getDescripcion() +
                                     " - " + nombreDia + " de " + act.getHoraInicio() + ":00 a " + act.getHoraFin() + ":00");
                         }

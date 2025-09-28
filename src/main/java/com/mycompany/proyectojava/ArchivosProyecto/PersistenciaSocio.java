@@ -2,6 +2,9 @@ package ArchivosProyecto;
 
 import Principal.ClubDeportivo;
 import Principal.Socio;
+import Principal.bloqueHorario;
+import Principal.Instalacion;
+
 
 import java.io.*;
 import java.util.ArrayList;
@@ -54,10 +57,10 @@ public class PersistenciaSocio {
     public static void eliminarSocio(String rutAEliminar, ClubDeportivo club) {
         ArrayList<Socio> socios = new ArrayList<>(club.getSociosPorRut().values());
 
-
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SOCIOS))) {
             for (Socio s : socios) {
                 if (!s.getRut().equals(rutAEliminar)) {
+                    eliminarSocioActividades(club, s);
                     String linea = s.getNombre() + "," + s.getEdad() + "," + s.getRut();
                     writer.write(linea);
                     writer.newLine();
@@ -65,6 +68,18 @@ public class PersistenciaSocio {
             }
         } catch (IOException e) {
             System.out.println("Error al eliminar socio: " + e.getMessage());
+        }
+    }
+
+    public static void eliminarSocioActividades(ClubDeportivo club, Socio s) {
+        for (Instalacion instalacion : club.getInstalaciones()) {
+            bloqueHorario[][] planificacion = instalacion.getPlanificacion();
+
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 12; j++) {
+                    planificacion[i][j].getSociosAsistentes().removeIf(socio -> socio.equals(s));
+                }
+            }
         }
     }
 
