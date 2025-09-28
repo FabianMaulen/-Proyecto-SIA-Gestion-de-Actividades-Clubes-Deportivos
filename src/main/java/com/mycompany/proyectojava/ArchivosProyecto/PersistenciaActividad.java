@@ -21,7 +21,8 @@ public class PersistenciaActividad {
                                     actividad.getDia() + "," +
                                     actividad.getHoraInicio() + "," +
                                     actividad.getHoraFin() + "," +
-                                    actividad.getDescripcion();
+                                    actividad.getDescripcion() + "," +
+                                    bloque.isDisponibilidad();
                             writer.write(linea);
                             writer.newLine();
                         }
@@ -38,24 +39,25 @@ public class PersistenciaActividad {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 String[] partes = linea.split(",");
-                if (partes.length == 5) {
+                if (partes.length == 6) {
                     String tipoInstalacion = partes[0];
                     int dia = Integer.parseInt(partes[1]);
                     int horaInicio = Integer.parseInt(partes[2]);
                     int horaFin = Integer.parseInt(partes[3]);
                     String descripcion = partes[4];
+                    boolean disponibilidad = Boolean.parseBoolean(partes[5]);
 
                     Instalacion instalacion = club.buscarInstalacionPorTipo(tipoInstalacion);
                     if (instalacion != null) {
-                        int h = horaInicio - 8;
-                        if (dia >= 1 && dia <= 7 && h >= 0 && h < 12) {
-                            bloqueHorario bloque = instalacion.getPlanificacion()[dia - 1][h];
+                        for (int h = horaInicio; h < horaFin; h++) {
+                            bloqueHorario bloque = instalacion.getPlanificacion()[dia - 1][h - 8];
                             Actividad actividad = new Actividad();
                             actividad.setDia(dia);
                             actividad.setHoraInicio(horaInicio);
                             actividad.setHoraFin(horaFin);
                             actividad.setDescripcion(descripcion);
                             bloque.setInfoActividad(actividad);
+                            bloque.setDisponibilidad(disponibilidad);
                         }
                     }
                 }

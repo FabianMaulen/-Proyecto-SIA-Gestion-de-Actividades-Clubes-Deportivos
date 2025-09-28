@@ -169,7 +169,6 @@ public class VentanaCrearActividad extends JFrame {
             }
 
             Instalacion inst = club.getInstalaciones().get(indiceSeleccionado);
-            Actividad a = new Actividad();
 
             // Verificar disponibilidad
             boolean disponible = inst.estaDisponible(dia, horaInicio, horaFin);
@@ -180,27 +179,38 @@ public class VentanaCrearActividad extends JFrame {
             } else {
 
                 // Crear actividad
+                Actividad a = new Actividad();
                 a.setDescripcion(descripcion);
                 a.setDia(dia);
                 a.setHoraInicio(horaInicio);
                 a.setHoraFin(horaFin);
 
+                for (Instalacion instal : club.getInstalaciones()) {
+                    if (instal.getTipo().equals("Cancha")) {
+                        for (int h = a.getHoraInicio(); h < a.getHoraFin(); h++) {
+                            bloqueHorario b = inst.getPlanificacion()[a.getDia() - 1][h - 8];
+                            b.setDisponibilidad(false);
+                            b.setInfoActividad(a);
+                        }
+                    }
+                }
+
+                // Asignar actividad a bloques
+                for (int h = horaInicio; h < horaFin; h++) {
+                    bloqueHorario b = inst.getPlanificacion()[dia - 1][h - 8];
+                    b.setDescripcion(a);
+                    b.setDisponibilidad(false);
+                    b.setInfoActividad(a);
+                    txtAreaInfo.append("Bloque asignado: Día " + dia +
+                            ", Hora " + h + ":00 → " + descripcion + "\n");
+                }
+
+                PersistenciaActividad.guardarActividades(club);
+                txtAreaInfo.append("\nResumen de la actividad:\n" + a.toString() + "\n");
+                txtAreaInfo.append("\n¡ACTIVIDAD CREADA Y ASIGNADA CORRECTAMENTE!\n");
+
                 txtAreaInfo.append("Actividad creada correctamente.\n\n");
             }
-
-            // Asignar actividad a bloques
-            for (int h = horaInicio; h < horaFin; h++) {
-                bloqueHorario b = inst.getPlanificacion()[dia - 1][h - 8];
-                b.setDescripcion(a);
-                b.setDisponibilidad(false);
-                b.setInfoActividad(a);
-                txtAreaInfo.append("Bloque asignado: Día " + dia +
-                        ", Hora " + h + ":00 → " + descripcion + "\n");
-            }
-
-            PersistenciaActividad.guardarActividades(club);
-            txtAreaInfo.append("\nResumen de la actividad:\n" + a.toString() + "\n");
-            txtAreaInfo.append("\n¡ACTIVIDAD CREADA Y ASIGNADA CORRECTAMENTE!\n");
 
             // Limpiar campos
             limpiarCampos();
