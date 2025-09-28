@@ -429,4 +429,27 @@ public class ClubDeportivo {
     public void setInstalaciones(ArrayList<Instalacion> instalaciones) {
         this.instalaciones = instalaciones;
     }
+
+    public void promedioAsistentesPorInstalacion() {
+        System.out.println("Promedio de asistentes por instalación (por bloque):");
+
+        for (Instalacion inst : instalaciones) {
+            int totalAsistentes = 0;
+            int totalBloques = 0;
+
+            for (int d = 0; d < 7; d++) {
+                for (int h = 0; h < 12; h++) {
+                    bloqueHorario bloque = inst.getPlanificacion()[d][h];
+                    if (bloque != null && bloque.getInfoActividad() != null) {
+                        totalAsistentes += bloque.getSociosAsistentes().size();
+                        totalBloques++;
+                    }
+                }
+            }
+
+            double promedio = (totalBloques > 0) ? (double) totalAsistentes / totalBloques : 0;
+            System.out.printf("Instalación: %s | Promedio de asistentes por bloque: %.2f%n",
+                    inst.getTipo(), promedio);
+        }
+    }
 }
