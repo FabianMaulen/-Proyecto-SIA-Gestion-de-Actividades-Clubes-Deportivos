@@ -160,15 +160,6 @@ public class VentanaCrearActividad extends JFrame {
                 return;
             }
 
-            // Crear actividad
-            Actividad a = new Actividad();
-            a.setDescripcion(descripcion);
-            a.setDia(dia);
-            a.setHoraInicio(horaInicio);
-            a.setHoraFin(horaFin);
-
-            txtAreaInfo.append("Actividad creada correctamente.\n\n");
-
             // Validar selección de instalación
             int indiceSeleccionado = cboInstalaciones.getSelectedIndex();
 
@@ -178,14 +169,23 @@ public class VentanaCrearActividad extends JFrame {
             }
 
             Instalacion inst = club.getInstalaciones().get(indiceSeleccionado);
-            txtAreaInfo.append("✓ Instalación seleccionada: " + inst.getTipo() + "\n");
+            Actividad a = new Actividad();
 
             // Verificar disponibilidad
             boolean disponible = inst.estaDisponible(dia, horaInicio, horaFin);
 
             if (!disponible) {
-                txtAreaInfo.append("No hay disponibilidad en ese rango horario.\n");
+                txtAreaInfo.append("Error: El horario seleccionado no esta disponible!.\n");
                 return;
+            } else {
+
+                // Crear actividad
+                a.setDescripcion(descripcion);
+                a.setDia(dia);
+                a.setHoraInicio(horaInicio);
+                a.setHoraFin(horaFin);
+
+                txtAreaInfo.append("Actividad creada correctamente.\n\n");
             }
 
             // Asignar actividad a bloques

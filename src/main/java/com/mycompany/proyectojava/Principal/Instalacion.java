@@ -6,11 +6,16 @@ public class Instalacion {
     private String direccion;
     private bloqueHorario [][] planificacion = new bloqueHorario [7][12];
 
-    public Instalacion(String tipo, int capacidad, bloqueHorario[][] planificacion,String direccion) {
+    public Instalacion(String tipo, int capacidad, bloqueHorario[][] planificacion, String direccion) {
         this.tipo = tipo;
         this.capacidad = capacidad;
-        this.planificacion = planificacion;
-        this.direccion = direccion ;
+        this.direccion = direccion;
+
+        if (planificacion == null) {
+            inicializarHorario();
+        } else {
+            this.planificacion = planificacion;
+        }
     }
 
     public Instalacion(){
@@ -42,17 +47,18 @@ public class Instalacion {
     }
 
     //Dia es entero del 1 al 7 que sera convertido en base a strings. ej Lunes = 1.
-    public boolean estaDisponible(int dia, int horaInicio, int horaFinal){
-        if(dia >7  || dia <1 ||  horaInicio<8 || horaFinal > 20) return false;
+    public boolean estaDisponible(int dia, int horaInicio, int horaFin) {
+        if (dia < 1 || dia > 7 || horaInicio < 8 || horaFin > 20 || horaFin <= horaInicio) {
+            return false;
+        }
 
-        int inicio = horaInicio - 8;
-        int fin = horaFinal - 8;
-
-        for(int i = inicio ; i<fin;i++){
-            if (!planificacion[dia-1][i].isDisponibilidad()){
+        for (int h = horaInicio; h < horaFin; h++) {
+            bloqueHorario b = planificacion[dia - 1][h - 8];
+            if (!b.isDisponibilidad()) {
                 return false;
             }
         }
+
         return true;
     }
 
