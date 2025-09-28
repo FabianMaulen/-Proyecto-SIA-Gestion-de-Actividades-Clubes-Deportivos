@@ -5,6 +5,8 @@ import Principal.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 public class VentanaAdmin extends JFrame {
@@ -256,6 +258,50 @@ public class VentanaAdmin extends JFrame {
                 JOptionPane.showMessageDialog(this, "Socio modificado correctamente.");
             }
         });
+
+
+
+
+
+        JButton btnPromedioAsistentes = new JButton("Promedio Asistentes");
+        btnPromedioAsistentes.setBounds(500, 180, 160, 30);
+        btnPromedioAsistentes.setToolTipText("Ver promedio de asistentes por instalación");
+
+
+
+
+        JTextArea txtAreaInfo;
+
+        txtAreaInfo = new JTextArea();
+        txtAreaInfo.setEditable(false);
+        txtAreaInfo.setBackground(Color.LIGHT_GRAY);
+        JScrollPane scrollInfo = new JScrollPane(txtAreaInfo);
+        scrollInfo.setBounds(50, 300, 200, 90);
+        panel.add(scrollInfo);
+        panel.add(btnPromedioAsistentes);
+
+        btnPromedioAsistentes.addActionListener(e -> {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PrintStream ps = new PrintStream(baos);
+            PrintStream originalOut = System.out;
+
+            System.setOut(ps);
+            club.promedioAsistentesPorInstalacion();
+            System.out.flush();
+            System.setOut(originalOut);
+
+            String resultado = baos.toString();
+
+            JTextArea areaTexto = new JTextArea(resultado);
+            areaTexto.setEditable(false);
+            areaTexto.setFont(new Font("Monospaced", Font.PLAIN, 12));
+            JScrollPane scroll = new JScrollPane(areaTexto);
+            scroll.setPreferredSize(new Dimension(500, 200));
+
+            JOptionPane.showMessageDialog(this, scroll, "Promedio de Asistentes", JOptionPane.INFORMATION_MESSAGE);
+        });
+
+
 
 
         //boton Cerrar Sesion

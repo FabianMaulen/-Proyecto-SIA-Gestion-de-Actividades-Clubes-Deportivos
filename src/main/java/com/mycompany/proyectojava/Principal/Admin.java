@@ -7,7 +7,7 @@ public class Admin extends Persona {
     }
 
     public boolean isAdmin(String rut) {
-        return this.rut.equals("11.111.111-1");
+        return this.rut.equals(rut);
     }
 
     @Override
