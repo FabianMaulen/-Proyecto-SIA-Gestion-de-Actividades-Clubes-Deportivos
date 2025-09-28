@@ -41,7 +41,7 @@ public class VentanaSocio extends JFrame {
 
         //Boton Modificar Datos
         JButton btnModificarDatos = new JButton("Modificar Mis Datos");
-        btnModificarDatos.setBounds(300, 180, 160, 30);
+        btnModificarDatos.setBounds(300, 140, 160, 30);
         btnModificarDatos.setToolTipText("Editar nombre, correo y edad");
         btnModificarDatos.addActionListener(e -> {
             JTextField txtNombre = new JTextField(socio.getNombre());
@@ -250,13 +250,6 @@ public class VentanaSocio extends JFrame {
             JOptionPane.showMessageDialog(this, info.toString(), "Instalaciones", JOptionPane.INFORMATION_MESSAGE);
         });
         panel.add(btnMostrarInstalaciones);
-
-        //boton Consultar por bloque horario
-        JButton btnBloqueHorario = new JButton("informacion de bloque horario");
-        btnBloqueHorario.setBounds(300, 140, 160, 30);
-        btnBloqueHorario.setFocusPainted(false);
-        btnBloqueHorario.setToolTipText("informacion de bloque horario");
-        panel.add(btnBloqueHorario);
 
 
         //boton Cerrar Sesion
