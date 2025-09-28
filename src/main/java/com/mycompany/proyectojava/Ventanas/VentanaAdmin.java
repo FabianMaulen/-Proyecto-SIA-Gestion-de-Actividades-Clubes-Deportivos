@@ -1,4 +1,5 @@
 package Ventanas;
+import ArchivosProyecto.PersistenciaSocio;
 import ArchivosProyecto.Reporte;
 import Principal.*;
 
@@ -16,7 +17,7 @@ public class VentanaAdmin extends JFrame {
         this.RutAdmin = admin.getRut();
 
         setTitle("Panel Administrador");
-        setSize(700, 300);
+        setSize(700, 350);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -166,6 +167,7 @@ public class VentanaAdmin extends JFrame {
         btnGenerarReporte.addActionListener(e -> {
             String ruta = "src/main/java/com/mycompany/proyectojava/ArchivosProyecto/ReporteClub.txt";
 
+
             try {
                 Reporte.generarReporteClub(club, ruta);
                 JOptionPane.showMessageDialog(this,
@@ -181,9 +183,36 @@ public class VentanaAdmin extends JFrame {
         });
         panel.add(btnGenerarReporte);
 
+
+
+        JButton btnEliminarSocio = new JButton("Eliminar Socio del Club");
+        btnEliminarSocio.setBounds(500,100,160,30);
+        btnEliminarSocio.setFocusPainted(false);
+        btnEliminarSocio.setToolTipText("Eliminar socio por RUT");
+        panel.add(btnEliminarSocio);
+
+
+        btnEliminarSocio.addActionListener(e -> {
+            String rut = JOptionPane.showInputDialog(this,"Ingrese el RUT del socio a eliminar: ");
+            if (rut == null || rut.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, " Debes ingresar un RUT válido.");
+                return;
+            }
+
+            if (!club.getSociosPorRut().containsKey(rut)) {
+                JOptionPane.showMessageDialog(this, "No existe un socio con ese RUT.");
+                return;
+            }
+            club.getSociosPorRut().remove(rut);
+            PersistenciaSocio.eliminarSocio(rut, club);
+
+            JOptionPane.showMessageDialog(this, " Socio eliminado correctamente.");
+
+                });
+
         //boton Cerrar Sesion
         JButton btnCerrarSesion = new JButton("Cerrar  sesion");
-        btnCerrarSesion.setBounds(550, 225, 120, 25);
+        btnCerrarSesion.setBounds(550, 275, 120, 25);
         btnCerrarSesion.setBackground(Color.PINK);
         btnCerrarSesion.setFocusPainted(false);
         btnCerrarSesion.addActionListener(e -> {

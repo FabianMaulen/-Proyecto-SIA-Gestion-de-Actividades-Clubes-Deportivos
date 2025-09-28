@@ -52,7 +52,8 @@ public class PersistenciaSocio {
     }
 
     public static void eliminarSocio(String rutAEliminar, ClubDeportivo club) {
-        ArrayList<Socio> socios = (ArrayList<Socio>) club.getSociosPorRut().values();
+        ArrayList<Socio> socios = new ArrayList<>(club.getSociosPorRut().values());
+
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(RUTA_SOCIOS))) {
             for (Socio s : socios) {
