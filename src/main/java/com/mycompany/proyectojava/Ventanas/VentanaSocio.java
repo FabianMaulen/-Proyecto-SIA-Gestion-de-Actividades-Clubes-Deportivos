@@ -41,11 +41,8 @@ public class VentanaSocio extends JFrame {
 
         //Boton Modificar Datos
         JButton btnModificarDatos = new JButton("Modificar Mis Datos");
-        btnModificarDatos.setBounds(300, 180, 180, 30);
+        btnModificarDatos.setBounds(300, 180, 160, 30);
         btnModificarDatos.setToolTipText("Editar nombre, correo y edad");
-        panel.add(btnModificarDatos);
-
-
         btnModificarDatos.addActionListener(e -> {
             JTextField txtNombre = new JTextField(socio.getNombre());
             JTextField txtCorreo = new JTextField(socio.getEmail());
@@ -72,8 +69,7 @@ public class VentanaSocio extends JFrame {
                 JOptionPane.showMessageDialog(this, " Tus datos fueron modificados correctamente.");
             }
         });
-
-
+        panel.add(btnModificarDatos);
 
         //boton crear Actividad
         JButton btnCrearAct = new JButton("Crear Actividad");
@@ -90,6 +86,73 @@ public class VentanaSocio extends JFrame {
         btnInscribirseAct.setBounds(100, 140, 160, 30);
         btnInscribirseAct.setFocusPainted(false);
         btnInscribirseAct.setToolTipText("Inscribirse a una Actividad");
+        btnInscribirseAct.addActionListener(e -> {
+            ArrayList<Actividad> actividadesDisponibles = new ArrayList<>();
+            ArrayList<String> opciones = new ArrayList<>();
+
+            for (Instalacion inst : club.getInstalaciones()) {
+                bloqueHorario[][] planificacion = inst.getPlanificacion();
+
+                for (int dia = 0; dia < 7; dia++) {
+                    for (int hora = 0; hora < 12; hora++) {
+                        bloqueHorario bloque = planificacion[dia][hora];
+                        Actividad act = bloque.getInfoActividad();
+
+                        if (act != null && hora == act.getHoraInicio() - 8) {
+                            actividadesDisponibles.add(act);
+                            String nombreDia = switch (act.getDia()) {
+                                case 1 -> "Lunes";
+                                case 2 -> "Martes";
+                                case 3 -> "Miércoles";
+                                case 4 -> "Jueves";
+                                case 5 -> "Viernes";
+                                case 6 -> "Sábado";
+                                case 7 -> "Domingo";
+                                default -> "Desconocido";
+                            };
+                            opciones.add("[" + inst.getTipo() + "] " + act.getDescripcion() +
+                                    " - " + nombreDia + " de " + act.getHoraInicio() + ":00 a " + act.getHoraFin() + ":00");
+                        }
+                    }
+                }
+            }
+
+            if (actividadesDisponibles.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "No hay actividades disponibles.");
+                return;
+            }
+
+            String seleccion = (String) JOptionPane.showInputDialog(
+                    this,
+                    "Seleccione una actividad:",
+                    "Inscripción",
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    opciones.toArray(),
+                    opciones.get(0)
+            );
+
+            if (seleccion != null) {
+                int index = opciones.indexOf(seleccion);
+                Actividad actividadSeleccionada = actividadesDisponibles.get(index);
+
+                // Buscar instalación y asignar socio
+                for (Instalacion inst : club.getInstalaciones()) {
+                    bloqueHorario[][] planificacion = inst.getPlanificacion();
+                    for (int h = actividadSeleccionada.getHoraInicio(); h < actividadSeleccionada.getHoraFin(); h++) {
+                        bloqueHorario bloque = planificacion[actividadSeleccionada.getDia() - 1][h - 8];
+                        if (bloque.getInfoActividad() == actividadSeleccionada) {
+                            if (!bloque.getSociosAsistentes().contains(Socio)) {
+                                bloque.getSociosAsistentes().add(Socio);
+                                JOptionPane.showMessageDialog(this, "Te has inscrito correctamente en la actividad.");
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Ya estás inscrito en esta actividad.");
+                            }
+                        }
+                    }
+                }
+            }
+        });
         panel.add(btnInscribirseAct);
 
         //boton Mostrar Actividad
