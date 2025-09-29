@@ -277,7 +277,7 @@ public class VentanaAdmin extends JFrame {
         txtAreaInfo.setBackground(Color.LIGHT_GRAY);
         JScrollPane scrollInfo = new JScrollPane(txtAreaInfo);
         scrollInfo.setBounds(50, 300, 200, 90);
-        panel.add(scrollInfo);
+
         panel.add(btnPromedioAsistentes);
 
         btnPromedioAsistentes.addActionListener(e -> {
