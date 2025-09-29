@@ -20,6 +20,7 @@ public class Socio extends Persona{
 
         @Override
         public String toString() {
-            return "Socio: " + nombre + " | RUT: " + rut + " | Edad: " + edad + " |";
+            return "Socio: " + getNombre() + " | RUT: " + getRut() + " | Edad: " + edad + " |";
         }
+
 }

@@ -7,17 +7,35 @@ RUT: 11.111.111-1
 Correo: admin@club.cl
 
 SOCIOS REGISTRADOS:
+  - Socio: Sofia Martinez Torres | RUT: 21.983.998-2 | Edad: 18 |
+  - Socio: Valentina Lopez Silva | RUT: 21.972.334-6 | Edad: 19 |
   - Socio: Fabian Maulen Gonzalez | RUT: 21.957.957-8 | Edad: 20 |
+  - Socio: Camila Rojas Araya | RUT: 21.978.224-5 | Edad: 21 |
+  - Socio: Diego Ramirez Flores | RUT: 21.951.774-4 | Edad: 20 |
+  - Socio: Andres Gonzalez Muñoz | RUT: 21.964.556-7 | Edad: 23 |
+  - Socio: Jorge Fernandez Castillo | RUT: 21.965.889-0 | Edad: 24 |
+  - Socio: Mario Vidal | RUT: 21.784.233-6 | Edad: 20 |
   - Socio: Martina Cabrera | RUT: 21.966.333-1 | Edad: 19 |
-  Total: 2 socios
+  - Socio: Isabella Morales Reyes | RUT: 21.979.112-9 | Edad: 21 |
+  Total: 10 socios
 
 INSTALACIONES:
   - Cancha en Av. Deportiva 123 (Capacidad: 20)
   - Piscina en Calle Acuática 456 (Capacidad: 15)
-  - Gimnasio gei de mario en Avenida mama del mario 123 (Capacidad: 10)
-  Total: 3 instalaciones
+  - Sala de yoga en Calle Zen 9 (Capacidad: 12)
+  - Pista de atletismo en Av. Olímpica 101 (Capacidad: 50)
+  - Cancha de tenis en Calle Raqueta 22 (Capacidad: 8)
+  - Piscina olímpica en Av. Nadadores 77 (Capacidad: 40)
+  - Gimnasio de pesas en Calle Fuerza 88 (Capacidad: 25)
+  - Cancha de baloncesto en Avenida Encestadores 55 (Capacidad: 18)
+  - Sala de baile en Calle Ritmo 10 (Capacidad: 15)
+  Total: 9 instalaciones
 
 ACTIVIDADES:
-  - Actividad: Mamá del Fabian | Día: 3 | Hora: 13:00 | Instalación: Gimnasio gei de mario
+  - Actividad: Fútbol libre | Día: 1 | Hora: 10:00 | Instalación: Cancha
+  - Actividad: Clases natación | Día: 1 | Hora: 12:00 | Instalación: Piscina
+  - Actividad: Yoga principiantes | Día: 2 | Hora: 8:00 | Instalación: Sala de yoga
+  - Actividad: Entrenamiento atletismo | Día: 2 | Hora: 10:00 | Instalación: Pista de atletismo
+  - Actividad: Torneo tenis | Día: 3 | Hora: 14:00 | Instalación: Cancha de tenis
 
 ===== FIN DEL REPORTE =====

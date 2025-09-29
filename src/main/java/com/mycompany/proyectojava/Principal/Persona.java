@@ -30,6 +30,7 @@ public class Persona {
     public String getRut() {
         return rut;
     }
+
     public void setRut(String rut) {
         this.rut = rut;
     }
